@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Mon panier - MEN FÊ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            color: #222;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 30px 15px 100px;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .intro h1 {
+            color: #16843d;
+            margin-bottom: 8px;
+        }
+        .panier {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .article {
+            background: white;
+            padding: 18px;
+            border-radius: 14px;
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .article-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        .article-image {
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+        .article-emoji {
+            font-size: 42px;
+        }
+        .article-nom {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .article-prix {
+            color: #16843d;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .quantite {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .quantite button {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 8px;
+            background: #16843d;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .quantite span {
+            min-width: 35px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        .sous-total {
+            min-width: 120px;
+            text-align: right;
+            color: #16843d;
+            font-weight: bold;
+        }
+        .supprimer {
+            border: none;
+            background: #ffe5e5;
+            color: #d32f2f;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .vide {
+            background: white;
+            padding: 50px 20px;
+            border-radius: 14px;
+            text-align: center;
+            color: #777;
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+        .vide h2 {
+            margin-bottom: 10px;
+            color: #16843d;
+        }
+        .resume {
+            margin-top: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+        .ligne-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .total {
+            color: #16843d;
+        }
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .bouton {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .principal {
+            background: #16843d;
+            color: white;
+        }
+        .secondaire {
+            background: #e9eeee;
+            color: #222;
+        }
+        .danger {
+            background: #ffe5e5;
+            color: #d32f2f;
+        }
+        .message {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #16843d;
+            color: white;
+            padding: 13px 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+        }
+        @media (max-width: 700px) {
+            .article {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .article-info {
+                justify-content: flex-start;
+            }
+            .quantite {
+                justify-content: center;
+            }
+            .sous-total {
+                text-align: center;
+            }
+            .supprimer {
+                width: 100%;
+            }
+            .actions {
+                flex-direction: column;
+            }
+            .actions .bouton {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="container">
+    <section class="intro">
+        <h1>
+            🛒 Mon panier
+        </h1>
+        <p>
+            Vérifie les produits et les quantités avant de commander.
+        </p>
+    </section>
+    <div
+        id="listePanier"
+        class="panier"
+    ></div>
+    <div
+        id="resume"
+        class="resume"
+        style="display: none;"
+    >
+        <div class="ligne-total">
+            <span>
+                Total :
+            </span>
+            <span
+                id="total"
+                class="total"
+            >
+                0 FCFA
+            </span>
+        </div>
+        <div class="actions">
+            <button
+                id="vider"
+                class="bouton danger"
+                type="button"
+            >
+                🗑️ Vider le panier
+            </button>
+            <a
+                href="commande.html"
+                class="bouton principal"
+            >
+                ✅ Passer la commande
+            </a>
+        </div>
+    </div>
+</main>
+<div
+    id="message"
+    class="message"
+></div>
+<script>
+/* =====================================
+   RÉCUPÉRER LE PANIER
+===================================== */
+function recupererPanier() {
+    try {
+        return JSON.parse(
+            localStorage.getItem("panier")
+        ) || [];
+    } catch (erreur) {
+        return [];
+    }
+}
+/* =====================================
+   SAUVEGARDER LE PANIER
+===================================== */
+function sauvegarderPanier(panier) {
+    localStorage.setItem(
+        "panier",
+        JSON.stringify(panier)
+    );
+}
+/* =====================================
+   AFFICHER LE PANIER
+===================================== */
+function afficherPanier() {
+    const zone =
+        document.getElementById(
+            "listePanier"
+        );
+    const resume =
+        document.getElementById(
+            "resume"
+        );
+    const totalElement =
+        document.getElementById(
+            "total"
+        );
+    const panier =
+        recupererPanier();
+    zone.innerHTML = "";
+    /* PANIER VIDE */
+    if (panier.length === 0) {
+        zone.innerHTML = `
+            <div class="vide">
+                <h2>
+                    🛒 Ton panier est vide
+                </h2>
+                <p>
+                    Ajoute des produits pour commencer tes achats.
+                </p>
+                <br>
+                <a
+                    href="produits.html"
+                    class="bouton principal"
+                >
+                    🛍️ Voir les produits
+                </a>
+            </div>
+        `;
+        resume.style.display =
+            "none";
+        return;
+    }
+    let total = 0;
+    panier.forEach(
+        function(article, index) {
+            const prix =
+                Number(article.prix) || 0;
+            const quantiteArticle =
+                Number(article.quantite) || 0;
+            const sousTotal =
+                prix * quantiteArticle;
+            total +=
+                sousTotal;
+            const div =
+                document.createElement(
+                    "div"
+                );
+            div.className =
+                "article";
+            /* INFORMATIONS */
+            const info =
+                document.createElement(
+                    "div"
+                );
+            info.className =
+                "article-info";
+            if (article.image) {
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+                image.className =
+                    "article-image";
+                image.src =
+                    article.image;
+                image.alt =
+                    article.nom || "Produit";
+                info.appendChild(
+                    image
+                );
+            } else {
+                const emoji =
+                    document.createElement(
+                        "div"
+                    );
+                emoji.className =
+                    "article-emoji";
+                emoji.textContent =
+                    article.emoji || "🛒";
+                info.appendChild(
+                    emoji
+                );
+            }
+            const texte =
+                document.createElement(
+                    "div"
+                );
+            const nom =
+                document.createElement(
+                    "div"
+                );
+            nom.className =
+                "article-nom";
+            nom.textContent =
+                article.nom;
+            const prixElement =
+                document.createElement(
+                    "div"
+                );
+            prixElement.className =
+                "article-prix";
+            prixElement.textContent =
+                prix.toLocaleString(
+                    "fr-FR"
+                ) + " FCFA";
+            texte.appendChild(
+                nom
+            );
+            texte.appendChild(
+                prixElement
+            );
+            info.appendChild(
+                texte
+            );
+            /* QUANTITÉ */
+            const zoneQuantite =
+                document.createElement(
+                    "div"
+                );
+            zoneQuantite.className =
+                "quantite";
+            const moins =
+                document.createElement(
+                    "button"
+                );
+            moins.type =
+                "button";
+            moins.textContent =
+                "−";
+            moins.addEventListener(
+                "click",
+                function() {
+                    let nouvelleQuantite =
+                        (
+                            Number(
+                                article.quantite
+                            ) || 0
+                        ) - 1;
+                    if (
+                        nouvelleQuantite <= 0
+                    ) {
+                        panier.splice(
+                            index,
+                            1
+                        );
+                    } else {
+                        article.quantite =
+                            nouvelleQuantite;
+                    }
+                    sauvegarderPanier(
+                        panier
+                    );
+                    afficherPanier();
+                }
+            );
+            const quantiteElement =
+                document.createElement(
+                    "span"
+                );
+            quantiteElement.textContent =
+                quantiteArticle;
+            const plus =
+                document.createElement(
+                    "button"
+                );
+            plus.type =
+                "button";
+            plus.textContent =
+                "+";
+            plus.addEventListener(
+                "click",
+                function() {
+                    article.quantite =
+                        (
+                            Number(
+                                article.quantite
+                            ) || 0
+                        ) + 1;
+                    sauvegarderPanier(
+                        panier
+                    );
+                    afficherPanier();
+                }
+            );
+            zoneQuantite.appendChild(
+                moins
+            );
+            zoneQuantite.appendChild(
+                quantiteElement
+            );
+            zoneQuantite.appendChild(
+                plus
+            );
+            /* SOUS-TOTAL */
+            const sousTotalElement =
+                document.createElement(
+                    "div"
+                );
+            sousTotalElement.className =
+                "sous-total";
+            sousTotalElement.textContent =
+                sousTotal.toLocaleString(
+                    "fr-FR"
+                ) + " FCFA";
+            /* SUPPRIMER */
+            const supprimer =
+                document.createElement(
+                    "button"
+                );
+            supprimer.type =
+                "button";
+            supprimer.className =
+                "supprimer";
+            supprimer.textContent =
+                "🗑️";
+            supprimer.title =
+                "Supprimer";
+            supprimer.addEventListener(
+                "click",
+                function() {
+                    panier.splice(
+                        index,
+                        1
+                    );
+                    sauvegarderPanier(
+                        panier
+                    );
+                    afficherPanier();
+                    afficherMessage(
+                        "🗑️ Produit supprimé du panier."
+                    );
+                }
+            );
+            /* AJOUT DES ÉLÉMENTS */
+            div.appendChild(
+                info
+            );
+            div.appendChild(
+                zoneQuantite
+            );
+            div.appendChild(
+                sousTotalElement
+            );
+            div.appendChild(
+                supprimer
+            );
+            zone.appendChild(
+                div
+            );
+        }
+    );
+    /* TOTAL */
+    totalElement.textContent =
+        total.toLocaleString(
+            "fr-FR"
+        ) + " FCFA";
+    resume.style.display =
+        "block";
+}
+/* =====================================
+   VIDER LE PANIER
+===================================== */
+document
+    .getElementById("vider")
+    .addEventListener(
+        "click",
+        function() {
+            const confirmation =
+                confirm(
+                    "Voulez-vous vraiment vider le panier ?"
+                );
+            if (!confirmation) {
+                return;
+            }
+            localStorage.removeItem(
+                "panier"
+            );
+            afficherPanier();
+            afficherMessage(
+                "🗑️ Panier vidé."
+            );
+        }
+    );
+/* =====================================
+   MESSAGE
+===================================== */
+function afficherMessage(texte) {
+    const message =
+        document.getElementById(
+            "message"
+        );
+    message.textContent =
+        texte;
+    message.style.display =
+        "block";
+    setTimeout(
+        function() {
+            message.style.display =
+                "none";
+        },
+        2000
+    );
+}
+/* =====================================
+   SI LE PANIER CHANGE AILLEURS
+===================================== */
+window.addEventListener(
+    "storage",
+    function() {
+        afficherPanier();
+    }
+);
+/* =====================================
+   DÉMARRAGE
+===================================== */
+afficherPanier();
+</script>
+</body>
+</html>

@@ -1,0 +1,3324 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Espace vendeur - MEN FÊ</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #f8fffb,
+                #eef9f3
+            );
+            color: #174f39;
+        }
+
+
+        /* =========================
+           EN-TÊTE
+        ========================= */
+
+        .header {
+
+            height: 136px;
+
+            background:
+                linear-gradient(
+                    rgba(20, 125, 75, 0.88),
+                    rgba(20, 125, 75, 0.88)
+                ),
+                url("images/fond.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+        }
+
+
+        .retour {
+
+            position: absolute;
+
+            left: 80px;
+            top: 47px;
+
+            border: 2px solid white;
+            border-radius: 25px;
+
+            padding: 10px 20px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            background:
+                rgba(0, 80, 45, 0.35);
+        }
+
+
+        .retour:hover {
+
+            background: white;
+            color: #167a49;
+        }
+
+
+        .logo-zone {
+
+            text-align: center;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 47px;
+
+            font-weight: bold;
+        }
+
+
+        .logo-cercle {
+
+            width: 82px;
+            height: 82px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 42px;
+        }
+
+
+        .logo-cercle img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            border-radius: 50%;
+        }
+
+
+        .sous-titre {
+
+            margin-top: 3px;
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .sous-titre::before,
+        .sous-titre::after {
+
+            content: "";
+
+            display: inline-block;
+
+            width: 46px;
+            height: 3px;
+
+            background: white;
+
+            vertical-align: middle;
+
+            margin: 0 25px;
+        }
+
+
+
+        /* =========================
+           CONTENEUR
+        ========================= */
+
+        .container {
+
+            width: 94%;
+
+            max-width: 1400px;
+
+            margin: 22px auto 35px;
+        }
+
+
+        .titre-principal {
+
+            text-align: center;
+
+            font-size: 36px;
+
+            margin-bottom: 15px;
+
+            color: #176343;
+
+            font-weight: 700;
+        }
+
+
+
+        /* =========================
+           STATISTIQUES
+        ========================= */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .stat-card {
+
+            height: 110px;
+
+            background: white;
+
+            border:
+                1px solid #dcece4;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(35, 105, 70, 0.10);
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 18px 28px;
+        }
+
+
+        .stat-icon {
+
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background: #e0f4df;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 42px;
+
+            margin-right: 30px;
+        }
+
+
+        .stat-text p {
+
+            font-size: 16px;
+
+            margin-bottom: 5px;
+
+            color: #19583e;
+        }
+
+
+        .stat-text strong {
+
+            font-size: 34px;
+
+            color: #12613f;
+        }
+
+
+
+        /* =========================
+           ZONE PRODUITS
+        ========================= */
+
+        .produits-zone {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .bloc {
+
+            background: white;
+
+            border:
+                1px solid #dcece4;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(35, 105, 70, 0.10);
+
+            overflow: hidden;
+        }
+
+
+        .bloc-titre {
+
+            height: 53px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #f7fbf8,
+                    #edf8f1
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 0 18px;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            color: #175e40;
+
+            border-bottom:
+                1px solid #e0eee7;
+        }
+
+
+        .bloc-titre .icone {
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 50%;
+
+            background: #0a9a5b;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 12px;
+
+            font-size: 25px;
+        }
+
+
+
+        /* =========================
+           FORMULAIRE
+        ========================= */
+
+        .formulaire {
+
+            padding:
+                20px 18px 23px;
+        }
+
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 19px 22px;
+        }
+
+
+        .champ label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+            color: #164c39;
+        }
+
+
+        .champ input,
+        .champ select {
+
+            width: 100%;
+
+            height: 39px;
+
+            border:
+                1px solid #cddde0;
+
+            border-radius: 7px;
+
+            padding: 0 12px;
+
+            font-size: 14px;
+
+            color: #50636a;
+
+            background: white;
+
+            outline: none;
+        }
+
+
+        .champ input:focus,
+        .champ select:focus {
+
+            border-color: #16a261;
+
+            box-shadow:
+                0 0 0 2px
+                rgba(22, 162, 97, 0.10);
+        }
+
+
+        .champ-image {
+
+            grid-column: 1 / 3;
+        }
+
+
+        .boutons-form {
+
+            margin-top: 23px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+
+        .btn-ajouter {
+
+            height: 47px;
+
+            padding:
+                0 32px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #079653;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .btn-ajouter:hover {
+
+            background: #067c46;
+        }
+
+
+        .btn-annuler {
+
+            height: 47px;
+
+            padding: 0 23px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #e74c3c;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .btn-annuler:hover {
+
+            background: #c0392b;
+        }
+
+
+        .message {
+
+            margin-left: 22px;
+
+            font-size: 12px;
+
+            color: #32805f;
+        }
+
+
+
+        /* =========================
+           GESTION PRODUITS
+        ========================= */
+
+        .produits-liste {
+
+            padding:
+                9px 14px 15px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 13px;
+        }
+
+
+        .produit-card {
+
+            min-height: 151px;
+
+            border:
+                1px solid #dbe5e5;
+
+            border-radius: 9px;
+
+            padding:
+                10px 12px;
+
+            background: #fff;
+        }
+
+
+        .produit-nom {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .produit-emoji {
+
+            font-size: 25px;
+        }
+
+
+        .produit-info {
+
+            font-size: 12px;
+
+            color: #49616a;
+
+            margin-bottom: 7px;
+        }
+
+
+        .produit-prix {
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #1b5840;
+
+            margin-bottom: 7px;
+        }
+
+
+        .produit-image {
+
+            font-size: 12px;
+
+            color: #687980;
+
+            margin-bottom: 9px;
+        }
+
+
+        .actions {
+
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .btn-modifier,
+        .btn-supprimer {
+
+            border: none;
+
+            border-radius: 6px;
+
+            height: 29px;
+
+            padding:
+                0 13px;
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .btn-modifier {
+
+            background: #277de2;
+        }
+
+
+        .btn-modifier:hover {
+
+            background: #166bc9;
+        }
+
+
+        .btn-supprimer {
+
+            background: #ed4145;
+        }
+
+
+        .btn-supprimer:hover {
+
+            background: #d92f33;
+        }
+
+
+
+        /* =========================
+           COMMANDES
+        ========================= */
+
+        .commandes-bloc {
+
+            margin-top: 18px;
+        }
+
+
+        .commandes-liste {
+
+            padding:
+                8px 15px 14px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .commande-card {
+
+            border:
+                1px solid #d8e4e3;
+
+            border-radius: 9px;
+
+            padding:
+                10px 13px;
+
+            background: white;
+        }
+
+
+        .commande-numero {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #166042;
+
+            margin-bottom: 8px;
+        }
+
+
+        .cube {
+
+            font-size: 21px;
+        }
+
+
+        .commande-info {
+
+            font-size: 12px;
+
+            color: #536770;
+
+            line-height: 1.55;
+        }
+
+
+        .commande-info strong {
+
+            color: #294a43;
+        }
+
+
+        .total-ligne {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 2px;
+
+            gap: 5px;
+        }
+
+
+        .total {
+
+            font-weight: bold;
+
+            color: #204e40;
+
+            font-size: 13px;
+        }
+
+
+        .statut {
+
+            border-radius: 18px;
+
+            padding:
+                6px 14px;
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .attente {
+
+            background: #f5a000;
+        }
+
+
+        .preparation {
+
+            background: #ed3557;
+        }
+
+
+        .livraison {
+
+            background: #237ee0;
+        }
+
+
+        .livree {
+
+            background: #27965a;
+        }
+
+
+        .produits-commandes {
+
+            background: #eef8f2;
+
+            border-radius: 6px;
+
+            margin-top: 9px;
+
+            padding: 8px 11px;
+
+            min-height: 69px;
+        }
+
+
+        .produits-commandes strong {
+
+            font-size: 12px;
+
+            color: #1b6146;
+        }
+
+
+        .produits-commandes ul {
+
+            padding-left: 15px;
+
+            margin-top: 4px;
+        }
+
+
+        .produits-commandes li {
+
+            font-size: 11px;
+
+            color: #50646a;
+
+            margin-bottom: 2px;
+        }
+
+
+        .select-statut {
+
+            width: 100%;
+
+            height: 31px;
+
+            border:
+                1px solid #d8e2e3;
+
+            border-radius: 6px;
+
+            margin-top: 8px;
+
+            padding:
+                0 9px;
+
+            color: #45616a;
+
+            background: white;
+
+            font-size: 11px;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .retour {
+                left: 20px;
+            }
+
+
+            .produits-zone {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .commandes-liste {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .header {
+
+                height: 125px;
+            }
+
+
+            .retour {
+
+                left: 10px;
+
+                top: 15px;
+
+                font-size: 12px;
+
+                padding:
+                    7px 12px;
+            }
+
+
+            .logo {
+
+                font-size: 30px;
+            }
+
+
+            .logo-cercle {
+
+                width: 55px;
+
+                height: 55px;
+
+                font-size: 28px;
+            }
+
+
+            .sous-titre {
+
+                font-size: 17px;
+            }
+
+
+            .sous-titre::before,
+            .sous-titre::after {
+
+                width: 25px;
+
+                margin:
+                    0 8px;
+            }
+
+
+            .titre-principal {
+
+                font-size: 27px;
+            }
+
+
+            .stats {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .champ-image {
+
+                grid-column: auto;
+            }
+
+
+            .produits-liste {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .commandes-liste {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .boutons-form {
+
+                flex-wrap: wrap;
+            }
+
+
+            .message {
+
+                margin-left: 0;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .container {
+
+                width: 96%;
+            }
+
+
+            .produits-liste {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .stat-card {
+
+                padding: 15px;
+            }
+
+
+            .stat-icon {
+
+                margin-right: 15px;
+            }
+
+        }
+
+
+        .fleche-retour {
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        /* =========================
+           ADAPTATION IPHONE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                width: 100%;
+
+                overflow-x: hidden;
+            }
+
+
+            .header {
+
+                width: 100%;
+
+                height: 125px;
+            }
+
+
+            .logo-zone {
+
+                width: 100%;
+            }
+
+
+            .logo {
+
+                font-size: 28px;
+
+                gap: 8px;
+            }
+
+
+            .logo-cercle {
+
+                width: 52px;
+
+                height: 52px;
+            }
+
+
+            .logo-cercle img {
+
+                width: 52px !important;
+
+                height: 52px !important;
+            }
+
+
+            .sous-titre {
+
+                font-size: 16px;
+            }
+
+
+            .sous-titre::before,
+            .sous-titre::after {
+
+                width: 20px;
+
+                margin: 0 6px;
+            }
+
+
+            .retour {
+
+                left: 8px;
+
+                top: 78px;
+
+                font-size: 11px;
+
+                padding: 6px 10px;
+
+                border-radius: 20px;
+            }
+
+
+            .container {
+
+                width: calc(100% - 20px);
+
+                max-width: none;
+
+                margin: 18px auto 30px;
+            }
+
+
+            .titre-principal {
+
+                font-size: 24px;
+
+                line-height: 1.25;
+            }
+
+
+            .stats {
+
+                grid-template-columns: 1fr;
+
+                gap: 12px;
+            }
+
+
+            .stat-card {
+
+                width: 100%;
+
+                height: 90px;
+
+                padding: 12px 16px;
+            }
+
+
+            .stat-icon {
+
+                width: 58px;
+
+                height: 58px;
+
+                font-size: 30px;
+
+                margin-right: 15px;
+
+                flex-shrink: 0;
+            }
+
+
+            .stat-text strong {
+
+                font-size: 27px;
+            }
+
+
+            .produits-zone {
+
+                grid-template-columns: 1fr;
+
+                gap: 15px;
+            }
+
+
+            .bloc {
+
+                width: 100%;
+            }
+
+
+            .bloc-titre {
+
+                height: auto;
+
+                min-height: 53px;
+
+                padding: 10px 13px;
+
+                font-size: 18px;
+            }
+
+
+            .formulaire {
+
+                padding: 16px 14px 20px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 14px;
+            }
+
+
+            .champ-image {
+
+                grid-column: auto;
+            }
+
+
+            .champ input,
+            .champ select {
+
+                width: 100%;
+
+                height: 42px;
+
+                font-size: 14px;
+            }
+
+
+            .boutons-form {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                width: 100%;
+
+                gap: 10px;
+            }
+
+
+            .btn-ajouter,
+            .btn-annuler {
+
+                width: 100%;
+
+                padding: 0 10px;
+            }
+
+
+            .message {
+
+                width: 100%;
+
+                margin-left: 0;
+
+                text-align: center;
+
+                line-height: 1.4;
+            }
+
+
+            .produits-liste {
+
+                grid-template-columns: 1fr;
+
+                padding: 10px;
+
+                gap: 10px;
+            }
+
+
+            .produit-card {
+
+                width: 100%;
+
+                min-height: auto;
+            }
+
+
+            .actions {
+
+                flex-wrap: wrap;
+            }
+
+
+            .btn-modifier,
+            .btn-supprimer {
+
+                flex: 1;
+
+                min-width: 110px;
+            }
+
+
+            .commandes-bloc {
+
+                width: 100%;
+            }
+
+
+            .commandes-liste {
+
+                grid-template-columns: 1fr;
+
+                padding: 10px;
+
+                gap: 10px;
+            }
+
+
+            .commande-card {
+
+                width: 100%;
+            }
+
+
+            .total-ligne {
+
+                flex-wrap: wrap;
+            }
+
+
+            .statut {
+
+                font-size: 10px;
+
+                padding: 5px 10px;
+            }
+
+
+            .select-statut {
+
+                height: 38px;
+
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         EN-TÊTE
+    ========================= -->
+
+    <header class="header">
+
+        <a
+            href="produits.html"
+            class="retour"
+        >
+
+            <span class="fleche-retour">←</span>
+            &nbsp; Retour
+
+        </a>
+
+
+        <div class="logo-zone">
+
+            <div class="logo">
+
+                <div class="logo-cercle">
+
+                    <img
+                        src="./images/logo-menfe.png"
+                        alt="MEN FÊ"
+                        style="
+                            width:82px;
+                            height:82px;
+                            object-fit:contain;
+                        "
+                    >
+
+                </div>
+
+                <span>
+                    MEN FÊ
+                </span>
+
+            </div>
+
+
+            <div class="sous-titre">
+
+                Espace vendeur
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTENU
+    ========================= -->
+
+    <main class="container">
+
+
+        <h1 class="titre-principal">
+
+            Tableau de bord vendeur 📊
+
+        </h1>
+
+
+
+        <!-- =========================
+             STATISTIQUES
+        ========================= -->
+
+        <section class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
+
+                <div class="stat-text">
+
+                    <p>
+                        Commandes
+                    </p>
+
+                    <strong id="nombreCommandes">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🛒
+                </div>
+
+
+                <div class="stat-text">
+
+                    <p>
+                        Produits
+                    </p>
+
+                    <strong id="nombreProduits">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🪙
+                </div>
+
+
+                <div class="stat-text">
+
+                    <p>
+                        Ventes
+                    </p>
+
+                    <strong id="montantVentes">
+                        0 FCFA
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PRODUITS
+        ========================= -->
+
+        <section class="produits-zone">
+
+
+            <!-- AJOUTER -->
+
+            <div class="bloc">
+
+
+                <div class="bloc-titre">
+
+                    <div class="icone">
+                        +
+                    </div>
+
+                    Ajouter un produit
+
+                </div>
+
+
+
+                <form
+                    class="formulaire"
+                    id="formProduit"
+                >
+
+
+                    <div class="form-grid">
+
+
+                        <div class="champ">
+
+                            <label for="nom">
+                                Nom du produit
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nom"
+                                placeholder="Exemple : Igname"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="champ">
+
+                            <label for="prix">
+                                Prix
+                            </label>
+
+                            <input
+                                type="number"
+                                id="prix"
+                                placeholder="Exemple : 1500"
+                                min="0"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="champ">
+
+                            <label for="categorie">
+                                Catégorie
+                            </label>
+
+                            <select
+                                id="categorie"
+                                required
+                            >
+
+                                <option value="">
+                                    Choisir une catégorie
+                                </option>
+
+                                <option value="Tubercules">
+                                    Tubercules
+                                </option>
+
+                                <option value="Fruits">
+                                    Fruits
+                                </option>
+
+                                <option value="Légumes">
+                                    Légumes
+                                </option>
+
+                                <option value="Céréales">
+                                    Céréales
+                                </option>
+
+                                <option value="Condiments">
+                                    Condiments
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <div class="champ">
+
+                            <label for="emoji">
+                                Emoji
+                            </label>
+
+                            <input
+                                type="text"
+                                id="emoji"
+                                placeholder="Exemple : 🍠"
+                            >
+
+                        </div>
+
+
+
+                        <div class="champ champ-image">
+
+                            <label for="image">
+                                Image du produit
+                            </label>
+
+                            <input
+                                type="text"
+                                id="image"
+                                placeholder="Exemple : images/igname.jpg"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="boutons-form">
+
+
+                        <button
+                            type="submit"
+                            class="btn-ajouter"
+                            id="btnPrincipal"
+                        >
+
+                            ＋ &nbsp; Ajouter le produit
+
+                        </button>
+
+
+
+                        <button
+                            type="button"
+                            class="btn-annuler"
+                            id="btnAnnuler"
+                        >
+
+                            × &nbsp; Annuler la modification
+
+                        </button>
+
+
+
+                        <span
+                            class="message"
+                            id="message"
+                        ></span>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- GESTION -->
+
+            <div class="bloc">
+
+
+                <div class="bloc-titre">
+
+                    <div class="icone">
+                        🛒
+                    </div>
+
+                    Gestion des produits
+
+                </div>
+
+
+                <div
+                    class="produits-liste"
+                    id="listeProduits"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             COMMANDES
+        ========================= -->
+
+        <section
+            class="bloc commandes-bloc"
+        >
+
+
+            <div class="bloc-titre">
+
+                <div class="icone">
+                    📦
+                </div>
+
+                Commandes reçues
+
+            </div>
+
+
+            <div
+                class="commandes-liste"
+                id="listeCommandes"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT COMPLET
+    ========================= -->
+
+    <script>
+
+
+        /* =========================================
+           ÉLÉMENTS
+        ========================================= */
+
+        const formProduit =
+            document.getElementById(
+                "formProduit"
+            );
+
+
+        const listeProduits =
+            document.getElementById(
+                "listeProduits"
+            );
+
+
+        const listeCommandes =
+            document.getElementById(
+                "listeCommandes"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const btnAnnuler =
+            document.getElementById(
+                "btnAnnuler"
+            );
+
+
+        const btnPrincipal =
+            document.getElementById(
+                "btnPrincipal"
+            );
+
+
+        const inputNom =
+            document.getElementById(
+                "nom"
+            );
+
+
+        const inputPrix =
+            document.getElementById(
+                "prix"
+            );
+
+
+        const inputCategorie =
+            document.getElementById(
+                "categorie"
+            );
+
+
+        const inputEmoji =
+            document.getElementById(
+                "emoji"
+            );
+
+
+        const inputImage =
+            document.getElementById(
+                "image"
+            );
+
+
+
+        /* =========================================
+           PRODUITS
+        ========================================= */
+
+        let produits =
+            JSON.parse(
+                localStorage.getItem(
+                    "produitsMENFE"
+                )
+            ) || [];
+
+
+
+        /*
+         * Si aucun produit n'existe encore,
+         * on crée les produits de départ.
+         */
+
+        if (produits.length === 0) {
+
+            produits = [
+
+                {
+                    id: 1,
+                    nom: "Igname",
+                    prix: 1500,
+                    categorie: "Tubercules",
+                    emoji: "🍠",
+                    image: "images/igname.jpg"
+                },
+
+                {
+                    id: 2,
+                    nom: "Banane",
+                    prix: 1000,
+                    categorie: "Fruits",
+                    emoji: "🍌",
+                    image: "images/banane.jpg"
+                },
+
+                {
+                    id: 3,
+                    nom: "Chou",
+                    prix: 1200,
+                    categorie: "Légumes",
+                    emoji: "🥬",
+                    image: "images/chou.jpg"
+                },
+
+                {
+                    id: 14,
+                    nom: "Carotte",
+                    prix: 1000,
+                    categorie: "Légumes",
+                    emoji: "🥕",
+                    image: "images/carotte.jpg"
+                },
+
+                {
+                    id: 5,
+                    nom: "Maïs",
+                    prix: 800,
+                    categorie: "Céréales",
+                    emoji: "🌽",
+                    image: "images/mais.jpg"
+                },
+
+                {
+                    id: 6,
+                    nom: "Piment",
+                    prix: 500,
+                    categorie: "Condiments",
+                    emoji: "🌶️",
+                    image: "images/piment.jpg"
+                }
+
+            ];
+
+
+            sauvegarderProduits();
+
+        }
+
+
+
+        function sauvegarderProduits() {
+
+            localStorage.setItem(
+                "produitsMENFE",
+                JSON.stringify(produits)
+            );
+
+        }
+
+
+
+        /* =========================================
+           AFFICHER LES PRODUITS
+        ========================================= */
+
+        function afficherProduits() {
+
+            listeProduits.innerHTML = "";
+
+
+            produits.forEach(
+                function(produit) {
+
+
+                    const carte =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    carte.className =
+                        "produit-card";
+
+
+                    carte.innerHTML = `
+
+                        <div class="produit-nom">
+
+                            <span class="produit-emoji">
+                                ${produit.emoji || "🥬"}
+                            </span>
+
+                            ${produit.nom}
+
+                        </div>
+
+
+                        <div class="produit-info">
+                            Catégorie : ${produit.categorie}
+                        </div>
+
+
+                        <div class="produit-prix">
+                            Prix :
+                            ${Number(produit.prix)
+                                .toLocaleString("fr-FR")}
+                            FCFA
+                        </div>
+
+
+                        <div class="produit-image">
+                            Image :
+                            ${produit.image || "Aucune image"}
+                        </div>
+
+
+                        <div class="actions">
+
+                            <button
+                                type="button"
+                                class="btn-modifier"
+                                data-id="${produit.id}"
+                            >
+                                ✎ &nbsp; Modifier
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-supprimer"
+                                data-id="${produit.id}"
+                            >
+                                🗑 &nbsp; Supprimer
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    listeProduits.appendChild(
+                        carte
+                    );
+
+                }
+            );
+
+
+            document.getElementById(
+                "nombreProduits"
+            ).textContent =
+                produits.length;
+
+        }
+
+
+
+        /* =========================================
+           MODE MODIFICATION
+        ========================================= */
+
+        let produitEnModification = null;
+
+
+
+        /* =========================================
+           AJOUTER OU MODIFIER
+        ========================================= */
+
+        formProduit.addEventListener(
+            "submit",
+            function(e) {
+
+                e.preventDefault();
+
+
+                const nom =
+                    inputNom.value.trim();
+
+
+                const prix =
+                    Number(
+                        inputPrix.value
+                    );
+
+
+                const categorie =
+                    inputCategorie.value;
+
+
+                const emoji =
+                    inputEmoji.value.trim()
+                    || "🥬";
+
+
+                const image =
+                    inputImage.value.trim();
+
+
+
+                if (
+                    !nom ||
+                    !prix ||
+                    !categorie
+                ) {
+
+                    message.textContent =
+                        "Veuillez remplir les champs obligatoires.";
+
+                    message.style.color =
+                        "#e33b3b";
+
+                    return;
+                }
+
+
+
+                /* =================================
+                   MODIFICATION
+                ================================= */
+
+                if (
+                    produitEnModification !== null
+                ) {
+
+
+                    const index =
+                        produits.findIndex(
+                            function(p) {
+
+                                return (
+                                    Number(p.id) ===
+                                    Number(
+                                        produitEnModification
+                                    )
+                                );
+
+                            }
+                        );
+
+
+                    if (index !== -1) {
+
+                        produits[index] = {
+
+                            ...produits[index],
+
+                            nom: nom,
+
+                            prix: prix,
+
+                            categorie: categorie,
+
+                            emoji: emoji,
+
+                            image: image
+
+                        };
+
+
+                        sauvegarderProduits();
+
+
+                        afficherProduits();
+
+
+                        message.textContent =
+                            "Produit modifié avec succès !";
+
+
+                        message.style.color =
+                            "#198754";
+
+
+                        produitEnModification =
+                            null;
+
+
+                        formProduit.reset();
+
+
+                        btnPrincipal.innerHTML =
+                            "＋ &nbsp; Ajouter le produit";
+
+                    }
+
+
+                    return;
+                }
+
+
+
+                /* =================================
+                   AJOUT
+                ================================= */
+
+                const nouveauProduit = {
+
+                    id: Date.now(),
+
+                    nom: nom,
+
+                    prix: prix,
+
+                    categorie: categorie,
+
+                    emoji: emoji,
+
+                    image: image
+
+                };
+
+
+                produits.push(
+                    nouveauProduit
+                );
+
+
+                sauvegarderProduits();
+
+
+                afficherProduits();
+
+
+                formProduit.reset();
+
+
+                message.textContent =
+                    "Produit ajouté avec succès !";
+
+
+                message.style.color =
+                    "#198754";
+
+            }
+        );
+
+
+
+        /* =========================================
+           CLICS MODIFIER / SUPPRIMER
+        ========================================= */
+
+        listeProduits.addEventListener(
+            "click",
+            function(e) {
+
+
+                /* =================================
+                   MODIFIER
+                ================================= */
+
+                if (
+                    e.target.closest(
+                        ".btn-modifier"
+                    )
+                ) {
+
+
+                    const bouton =
+                        e.target.closest(
+                            ".btn-modifier"
+                        );
+
+
+                    const id =
+                        Number(
+                            bouton.dataset.id
+                        );
+
+
+                    const produit =
+                        produits.find(
+                            function(p) {
+
+                                return (
+                                    Number(p.id) === id
+                                );
+
+                            }
+                        );
+
+
+                    if (!produit) {
+                        return;
+                    }
+
+
+                    inputNom.value =
+                        produit.nom;
+
+
+                    inputPrix.value =
+                        produit.prix;
+
+
+                    inputCategorie.value =
+                        produit.categorie;
+
+
+                    inputEmoji.value =
+                        produit.emoji || "";
+
+
+                    inputImage.value =
+                        produit.image || "";
+
+
+                    produitEnModification =
+                        id;
+
+
+                    btnPrincipal.innerHTML =
+                        "✎ &nbsp; Modifier le produit";
+
+
+                    message.textContent =
+                        "Modification du produit en cours...";
+
+
+                    message.style.color =
+                        "#277de2";
+
+
+                    window.scrollTo({
+
+                        top: 0,
+
+                        behavior: "smooth"
+
+                    });
+
+
+                    return;
+                }
+
+
+
+                /* =================================
+                   SUPPRIMER
+                ================================= */
+
+                if (
+                    e.target.closest(
+                        ".btn-supprimer"
+                    )
+                ) {
+
+
+                    const bouton =
+                        e.target.closest(
+                            ".btn-supprimer"
+                        );
+
+
+                    const id =
+                        Number(
+                            bouton.dataset.id
+                        );
+
+
+                    const produit =
+                        produits.find(
+                            function(p) {
+
+                                return (
+                                    Number(p.id) === id
+                                );
+
+                            }
+                        );
+
+
+                    if (!produit) {
+                        return;
+                    }
+
+
+                    const confirmation =
+                        confirm(
+                            "Voulez-vous vraiment supprimer le produit « " +
+                            produit.nom +
+                            " » ?"
+                        );
+
+
+                    if (!confirmation) {
+                        return;
+                    }
+
+
+                    produits =
+                        produits.filter(
+                            function(p) {
+
+                                return (
+                                    Number(p.id) !== id
+                                );
+
+                            }
+                        );
+
+
+                    sauvegarderProduits();
+
+
+                    afficherProduits();
+
+
+                    message.textContent =
+                        "Produit supprimé avec succès !";
+
+
+                    message.style.color =
+                        "#198754";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           ANNULER MODIFICATION
+        ========================================= */
+
+        btnAnnuler.addEventListener(
+            "click",
+            function() {
+
+                produitEnModification =
+                    null;
+
+
+                formProduit.reset();
+
+
+                btnPrincipal.innerHTML =
+                    "＋ &nbsp; Ajouter le produit";
+
+
+                message.textContent =
+                    "Le message apparaîtra ici...";
+
+
+                message.style.color =
+                    "#32805f";
+
+            }
+        );
+
+
+
+        /* =========================================
+           COMMANDES
+           
+           IMPORTANT :
+           Le panier et l'historique utilisent
+           "commandes".
+           
+           Le vendeur va maintenant utiliser
+           la même clé.
+        ========================================= */
+
+        let commandes =
+            JSON.parse(
+                localStorage.getItem(
+                    "commandes"
+                )
+            ) || [];
+
+
+
+        /* =========================================
+           STATUTS DES COMMANDES
+        ========================================= */
+
+        let statutsCommandes =
+            JSON.parse(
+                localStorage.getItem(
+                    "statutsCommandesMENFE"
+                )
+            ) || {};
+
+
+
+        /* =========================================
+           RÉCUPÉRER LES COMMANDES
+        ========================================= */
+
+        function chargerCommandes() {
+
+            try {
+
+                commandes =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "commandes"
+                        )
+                    ) || [];
+
+            }
+            catch (erreur) {
+
+                commandes = [];
+
+            }
+
+
+            if (!Array.isArray(commandes)) {
+
+                commandes = [];
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           FUSIONNER LES ANCIENS STATUTS
+        ========================================= */
+
+        function appliquerStatuts() {
+
+            commandes.forEach(
+                function(commande) {
+
+                    const id =
+                        commande.id ||
+                        commande.numero;
+
+
+                    if (
+                        statutsCommandes[id]
+                    ) {
+
+                        commande.statut =
+                            statutsCommandes[id];
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           FONCTIONS STATUT
+        ========================================= */
+
+        function classeStatut(statut) {
+
+            if (
+                statut === "En préparation"
+            ) {
+
+                return "preparation";
+            }
+
+
+            if (
+                statut === "En livraison"
+            ) {
+
+                return "livraison";
+            }
+
+
+            if (
+                statut === "Livrée"
+            ) {
+
+                return "livree";
+            }
+
+
+            return "attente";
+
+        }
+
+
+
+        function statutEnregistre(commande) {
+
+            const id =
+                commande.id ||
+                commande.numero;
+
+
+            if (
+                statutsCommandes[id]
+            ) {
+
+                return statutsCommandes[id];
+
+            }
+
+
+            return (
+                commande.statut ||
+                "En attente"
+            );
+
+        }
+
+
+
+        /* =========================================
+           PRODUITS D'UNE COMMANDE
+        ========================================= */
+
+        function recupererProduitsCommande(commande) {
+
+            /*
+             * Les vraies commandes venant du panier
+             * utilisent "panier".
+             */
+
+            if (
+                Array.isArray(
+                    commande.panier
+                )
+            ) {
+
+                return commande.panier;
+
+            }
+
+
+            /*
+             * Anciennes commandes utilisant
+             * "produits".
+             */
+
+            if (
+                Array.isArray(
+                    commande.produits
+                )
+            ) {
+
+                return commande.produits;
+
+            }
+
+
+            /*
+             * Autre ancien format.
+             */
+
+            if (
+                Array.isArray(
+                    commande.items
+                )
+            ) {
+
+                return commande.items;
+
+            }
+
+
+            return [];
+
+        }
+
+
+
+        /* =========================================
+           AFFICHER LES COMMANDES
+        ========================================= */
+
+        function afficherCommandes() {
+
+            chargerCommandes();
+
+            appliquerStatuts();
+
+            listeCommandes.innerHTML = "";
+
+
+            /*
+             * Aucune commande
+             */
+
+            if (
+                commandes.length === 0
+            ) {
+
+                listeCommandes.innerHTML = `
+
+                    <div
+                        style="
+                            grid-column:1/-1;
+                            text-align:center;
+                            padding:30px;
+                            color:#687980;
+                        "
+                    >
+
+                        📦 Aucune commande reçue
+
+                    </div>
+
+                `;
+
+
+                document.getElementById(
+                    "nombreCommandes"
+                ).textContent = "0";
+
+
+                calculerVentes();
+
+                return;
+
+            }
+
+
+
+            commandes.forEach(
+                function(commande) {
+
+
+                    const id =
+                        commande.id ||
+                        commande.numero;
+
+
+                    const statut =
+                        statutEnregistre(
+                            commande
+                        );
+
+
+
+                    /*
+                     * Récupérer les produits
+                     */
+
+                    const produitsCommande =
+                        recupererProduitsCommande(
+                            commande
+                        );
+
+
+                    const produitsHTML =
+                        produitsCommande
+                            .map(
+                                function(p) {
+
+
+                                    /*
+                                     * Ancien format :
+                                     * produit sous forme
+                                     * de texte.
+                                     */
+
+                                    if (
+                                        typeof p ===
+                                        "string"
+                                    ) {
+
+                                        return `
+
+                                            <li>
+                                                ${p}
+                                            </li>
+
+                                        `;
+
+                                    }
+
+
+
+                                    const nom =
+                                        p.nom ||
+                                        p.name ||
+                                        "Produit";
+
+
+                                    const quantite =
+                                        Number(
+                                            p.quantite ||
+                                            p.quantity ||
+                                            1
+                                        );
+
+
+                                    const prix =
+                                        Number(
+                                            p.prix ||
+                                            p.price ||
+                                            0
+                                        );
+
+
+
+                                    return `
+
+                                        <li>
+
+                                            ${nom}
+
+                                            (${quantite}
+                                            ×
+                                            ${prix.toLocaleString("fr-FR")}
+                                            FCFA)
+
+                                        </li>
+
+                                    `;
+
+                                }
+                            )
+                            .join("");
+
+
+
+                    /*
+                     * Nom du client
+                     *
+                     * Le panier utilise "nom".
+                     * Les anciennes commandes utilisent
+                     * "client".
+                     */
+
+                    const nomClient =
+                        commande.client ||
+                        commande.nom ||
+                        "Client";
+
+
+
+                    const telephone =
+                        commande.telephone ||
+                        commande.clientId ||
+                        "Non renseigné";
+
+
+
+                    const carte =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    carte.className =
+                        "commande-card";
+
+
+                    carte.dataset.id =
+                        id;
+
+
+
+                    carte.innerHTML = `
+
+                        <div class="commande-numero">
+
+                            <span class="cube">
+                                📦
+                            </span>
+
+                            N° ${commande.numero || id}
+
+                        </div>
+
+
+                        <div class="commande-info">
+
+                            <div>
+
+                                <strong>
+                                    Client :
+                                </strong>
+
+                                ${nomClient}
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Téléphone :
+                                </strong>
+
+                                ${telephone}
+
+                            </div>
+
+
+                            <div class="total-ligne">
+
+                                <span class="total">
+
+                                    Total :
+
+                                    ${Number(
+                                        commande.total || 0
+                                    ).toLocaleString("fr-FR")}
+
+                                    FCFA
+
+                                </span>
+
+
+                                <span
+                                    class="statut ${classeStatut(statut)}"
+                                    data-statut="${id}"
+                                >
+
+                                    ${statut}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="produits-commandes">
+
+                            <strong>
+                                Produits commandés
+                            </strong>
+
+
+                            <ul>
+
+                                ${
+                                    produitsHTML ||
+                                    "<li>Aucun produit</li>"
+                                }
+
+                            </ul>
+
+                        </div>
+
+
+
+                        <select
+                            class="select-statut"
+                            data-commande-id="${id}"
+                        >
+
+                            <option
+                                value="En attente"
+                                ${
+                                    statut ===
+                                    "En attente"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                En attente
+                            </option>
+
+
+                            <option
+                                value="En préparation"
+                                ${
+                                    statut ===
+                                    "En préparation"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                En préparation
+                            </option>
+
+
+                            <option
+                                value="En livraison"
+                                ${
+                                    statut ===
+                                    "En livraison"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                En livraison
+                            </option>
+
+
+                            <option
+                                value="Livrée"
+                                ${
+                                    statut ===
+                                    "Livrée"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                Livrée
+                            </option>
+
+                        </select>
+
+                    `;
+
+
+                    listeCommandes.appendChild(
+                        carte
+                    );
+
+                }
+            );
+
+
+
+            document.getElementById(
+                "nombreCommandes"
+            ).textContent =
+                commandes.length;
+
+
+            calculerVentes();
+
+        }
+
+
+
+        /* =========================================
+           CALCUL DES VENTES
+        ========================================= */
+
+        function calculerVentes() {
+
+            let total = 0;
+
+
+            commandes.forEach(
+                function(commande) {
+
+                    const statut =
+                        statutEnregistre(
+                            commande
+                        );
+
+
+                    if (
+                        statut === "Livrée"
+                    ) {
+
+                        total += Number(
+                            commande.total || 0
+                        );
+
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "montantVentes"
+            ).textContent =
+                total.toLocaleString(
+                    "fr-FR"
+                ) +
+                " FCFA";
+
+        }
+
+
+
+        /* =========================================
+           CHANGEMENT DU STATUT
+        ========================================= */
+
+        listeCommandes.addEventListener(
+            "change",
+            function(e) {
+
+
+                if (
+                    !e.target.classList.contains(
+                        "select-statut"
+                    )
+                ) {
+
+                    return;
+                }
+
+
+                const select =
+                    e.target;
+
+
+                const id =
+                    select.dataset.commandeId;
+
+
+                const nouveauStatut =
+                    select.value;
+
+
+
+                /* =================================
+                   ENREGISTRER LE STATUT
+                ================================= */
+
+                statutsCommandes[id] =
+                    nouveauStatut;
+
+
+                localStorage.setItem(
+                    "statutsCommandesMENFE",
+                    JSON.stringify(
+                        statutsCommandes
+                    )
+                );
+
+
+
+                /* =================================
+                   METTRE À JOUR LA COMMANDE
+                ================================= */
+
+                const commande =
+                    commandes.find(
+                        function(c) {
+
+                            return String(
+                                c.id ||
+                                c.numero
+                            ) ===
+                            String(id);
+
+                        }
+                    );
+
+
+                if (commande) {
+
+                    commande.statut =
+                        nouveauStatut;
+
+                }
+
+
+
+                localStorage.setItem(
+                    "commandes",
+                    JSON.stringify(
+                        commandes
+                    )
+                );
+
+
+
+                /*
+                 * Mettre à jour immédiatement
+                 * l'affichage du badge.
+                 */
+
+                const carte =
+                    select.closest(
+                        ".commande-card"
+                    );
+
+
+                if (carte) {
+
+                    const badge =
+                        carte.querySelector(
+                            ".statut"
+                        );
+
+
+                    if (badge) {
+
+                        badge.textContent =
+                            nouveauStatut;
+
+
+                        badge.className =
+                            "statut " +
+                            classeStatut(
+                                nouveauStatut
+                            );
+
+                    }
+
+                }
+
+
+
+                message.textContent =
+                    "Statut de la commande " +
+                    id +
+                    " mis à jour !";
+
+
+                message.style.color =
+                    "#198754";
+
+
+                calculerVentes();
+
+
+
+                /*
+                 * Informer les autres pages
+                 * ouvertes.
+                 */
+
+                window.dispatchEvent(
+                    new StorageEvent(
+                        "storage",
+                        {
+                            key:
+                                "commandes",
+
+                            newValue:
+                                JSON.stringify(
+                                    commandes
+                                )
+                        }
+                    )
+                );
+
+
+                window.dispatchEvent(
+                    new StorageEvent(
+                        "storage",
+                        {
+                            key:
+                                "statutsCommandesMENFE",
+
+                            newValue:
+                                JSON.stringify(
+                                    statutsCommandes
+                                )
+                        }
+                    )
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           SYNCHRONISATION
+        ========================================= */
+
+        window.addEventListener(
+            "storage",
+            function(e) {
+
+
+                /*
+                 * Produits
+                 */
+
+                if (
+                    e.key ===
+                    "produitsMENFE"
+                ) {
+
+                    produits =
+                        JSON.parse(
+                            e.newValue
+                        ) || [];
+
+
+                    afficherProduits();
+
+                }
+
+
+
+                /*
+                 * Commandes
+                 */
+
+                if (
+                    e.key ===
+                    "commandes"
+                ) {
+
+                    chargerCommandes();
+
+                    afficherCommandes();
+
+                }
+
+
+
+                /*
+                 * Statuts
+                 */
+
+                if (
+                    e.key ===
+                    "statutsCommandesMENFE"
+                ) {
+
+                    statutsCommandes =
+                        JSON.parse(
+                            e.newValue
+                        ) || {};
+
+
+                    afficherCommandes();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           ACTUALISATION AUTOMATIQUE
+        ========================================= */
+
+        setInterval(
+            function() {
+
+                const anciennesCommandes =
+                    JSON.stringify(
+                        commandes
+                    );
+
+
+                chargerCommandes();
+
+
+                const nouvellesCommandes =
+                    JSON.stringify(
+                        commandes
+                    );
+
+
+                if (
+                    anciennesCommandes !==
+                    nouvellesCommandes
+                ) {
+
+                    afficherCommandes();
+
+                }
+
+            },
+            3000
+        );
+
+
+
+        /* =========================================
+           DÉMARRAGE
+        ========================================= */
+
+        afficherProduits();
+
+        afficherCommandes();
+
+    </script>
+
+</body>
+
+</html>
