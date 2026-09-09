@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mon compte - MEN FÊ</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: #198754;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #198754;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #198754;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background: #146c43;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .bienvenue {
+            text-align: center;
+            display: none;
+        }
+
+        .modifierBox {
+            display: none;
+            text-align: left;
+        }
+
+        .deconnexion {
+            background: #dc3545;
+            margin-top: 15px;
+        }
+
+        .deconnexion:hover {
+            background: #bb2d3b;
+        }
+
+        .annuler {
+            background: #6c757d;
+        }
+
+        .annuler:hover {
+            background: #5c636a;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #198754;
+            text-decoration: none;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <!-- INSCRIPTION -->
+    <div class="box" id="inscriptionBox">
+
+        <h2>Créer un compte</h2>
+
+        <input
+            type="text"
+            id="nom"
+            placeholder="Votre nom complet"
+        >
+
+        <input
+            type="tel"
+            id="telephone"
+            placeholder="Votre numéro de téléphone"
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Votre adresse email"
+        >
+
+        <input
+            type="password"
+            id="motDePasse"
+            placeholder="Créer un mot de passe"
+        >
+
+        <button onclick="inscription()">
+            Créer mon compte
+        </button>
+
+        <div class="message" id="message"></div>
+
+    </div>
+
+
+    <!-- COMPTE CONNECTÉ -->
+    <div class="box bienvenue" id="compteBox">
+
+        <h2>Bienvenue 👋</h2>
+
+        <p id="nomUtilisateur"></p>
+<p id="nombreCommandes"></p>
+        <button onclick="ouvrirModification()">
+            ✏️ Modifier mes informations
+        </button>
+<button onclick="voirPanier()">
+    🛒 Mon panier
+    <span id="nombreArticlesPanier"></span>
+</button>
+
+        <button onclick="voirCommandes()">
+            📋 Mes commandes
+        </button>
+
+        <button
+            class="deconnexion"
+            onclick="deconnexion()"
+        >
+            🚪 Se déconnecter
+        </button>
+
+    </div>
+
+
+    <!-- MODIFICATION DES INFORMATIONS -->
+    <div class="box modifierBox" id="modifierBox">
+
+        <h2>✏️ Modifier mes informations</h2>
+
+        <label for="modifierNom">Nom complet</label>
+
+        <input
+            type="text"
+            id="modifierNom"
+            placeholder="Votre nom complet"
+        >
+
+        <label for="modifierTelephone">Téléphone</label>
+
+        <input
+            type="tel"
+            id="modifierTelephone"
+            placeholder="Votre numéro de téléphone"
+        >
+
+        <label for="modifierEmail">Email</label>
+
+        <input
+            type="email"
+            id="modifierEmail"
+            placeholder="Votre adresse email"
+        >
+<label for="modifierQuartier">Quartier</label>
+
+<input
+    type="text"
+    id="modifierQuartier"
+    placeholder="Votre quartier"
+>
+
+<label for="modifierAdresse">Adresse</label>
+
+<input
+    type="text"
+    id="modifierAdresse"
+    placeholder="Votre adresse"
+>
+        <button onclick="enregistrerModification()">
+            💾 Enregistrer les modifications
+        </button>
+
+        <button
+            class="annuler"
+            onclick="annulerModification()"
+        >
+            ❌ Annuler
+        </button>
+
+        <div class="message" id="messageModification"></div>
+
+    </div>
+
+
+    <a href="index.html">
+        ← Retour à l'accueil
+    </a>
+
+</div>
+
+
+<script>
+
+    // Vérifier si un compte existe déjà
+    afficherCompte();
+
+
+    // ==============================
+    // CRÉATION DU COMPTE
+    // ==============================
+
+    function inscription() {
+
+        let nom =
+            document.getElementById("nom").value.trim();
+
+        let telephone =
+            document.getElementById("telephone").value.trim();
+
+        let email =
+            document.getElementById("email").value.trim();
+
+        let motDePasse =
+            document.getElementById("motDePasse").value;
+
+        let message =
+            document.getElementById("message");
+
+
+        if (
+            nom === "" ||
+            telephone === "" ||
+            email === "" ||
+            motDePasse === ""
+        ) {
+
+            message.style.color = "red";
+
+            message.textContent =
+                "⚠️ Remplis tous les champs.";
+
+            return;
+        }
+
+
+        let utilisateur = {
+
+            nom: nom,
+            telephone: telephone,
+            email: email,
+            motDePasse: motDePasse
+
+        };
+
+
+        localStorage.setItem(
+            "utilisateur",
+            JSON.stringify(utilisateur)
+        );
+
+
+        message.style.color = "green";
+
+        message.textContent =
+            "✅ Compte créé avec succès !";
+
+
+        setTimeout(function() {
+
+            afficherCompte();
+
+        }, 800);
+    }
+
+
+
+    // ==============================
+    // AFFICHER LE COMPTE
+    // ==============================
+
+    function afficherCompte() {
+
+        let utilisateur =
+            JSON.parse(
+                localStorage.getItem("utilisateur")
+            );
+
+
+        if (utilisateur) {
+
+            document.getElementById("inscriptionBox")
+                .style.display = "none";
+
+            document.getElementById("compteBox")
+                .style.display = "block";
+
+            document.getElementById("nomUtilisateur")
+                .textContent =
+                "Bonjour " + utilisateur.nom + " !";
+let commandes =
+    JSON.parse(
+        localStorage.getItem("commandes")
+    ) || [];
+
+document.getElementById("nombreCommandes")
+    .textContent =
+    "📦 " + commandes.length + " commande(s) passée(s)";
+        }
+let panier =
+    JSON.parse(
+        localStorage.getItem("panier")
+    ) || [];
+
+let nombreArticles = panier.reduce(
+    function(total, article) {
+        return total + article.quantite;
+    },
+    0
+);
+
+document.getElementById("nombreArticlesPanier")
+    .textContent =
+    " (" + nombreArticles + " article(s))";
+    }
+
+
+
+    // ==============================
+    // OUVRIR LA MODIFICATION
+    // ==============================
+
+    function ouvrirModification() {
+
+        let utilisateur =
+            JSON.parse(
+                localStorage.getItem("utilisateur")
+            );
+
+
+        if (!utilisateur) {
+            return;
+        }
+
+
+        document.getElementById("modifierNom").value =
+            utilisateur.nom;
+
+        document.getElementById("modifierTelephone").value =
+            utilisateur.telephone;
+
+        document.getElementById("modifierEmail").value =
+            utilisateur.email;
+document.getElementById("modifierQuartier").value =
+    utilisateur.quartier || "";
+
+document.getElementById("modifierAdresse").value =
+    utilisateur.adresse || "";
+
+        document.getElementById("modifierBox")
+            .style.display = "block";
+
+
+        document.getElementById("compteBox")
+            .style.display = "none";
+
+    }
+
+
+
+    // ==============================
+    // ENREGISTRER LES MODIFICATIONS
+    // ==============================
+
+    function enregistrerModification() {
+
+        let nom =
+            document.getElementById("modifierNom")
+                .value.trim();
+
+        let telephone =
+            document.getElementById("modifierTelephone")
+                .value.trim();
+
+        let email =
+            document.getElementById("modifierEmail")
+                .value.trim();
+let quartier =
+    document.getElementById("modifierQuartier")
+        .value.trim();
+
+let adresse =
+    document.getElementById("modifierAdresse")
+        .value.trim();
+        let message =
+            document.getElementById("messageModification");
+
+
+        if (
+            nom === "" ||
+            telephone === "" ||
+            email === ""
+        ) {
+
+            message.style.color = "red";
+
+            message.textContent =
+                "⚠️ Remplis tous les champs.";
+
+            return;
+        }
+
+
+        let utilisateur =
+            JSON.parse(
+                localStorage.getItem("utilisateur")
+            );
+
+
+        utilisateur.nom = nom;
+        utilisateur.telephone = telephone;
+        utilisateur.email = email;
+utilisateur.quartier = quartier;
+utilisateur.adresse = adresse;
+
+        localStorage.setItem(
+            "utilisateur",
+            JSON.stringify(utilisateur)
+        );
+
+
+        message.style.color = "green";
+
+        message.textContent =
+            "✅ Informations modifiées avec succès !";
+
+
+        setTimeout(function() {
+
+            document.getElementById("modifierBox")
+                .style.display = "none";
+
+            document.getElementById("compteBox")
+                .style.display = "block";
+
+            afficherCompte();
+
+        }, 800);
+
+    }
+
+
+
+    // ==============================
+    // ANNULER
+    // ==============================
+
+    function annulerModification() {
+
+        document.getElementById("modifierBox")
+            .style.display = "none";
+
+        document.getElementById("compteBox")
+            .style.display = "block";
+
+    }
+
+
+
+    // ==============================
+    // MES COMMANDES
+    // ==============================
+function voirPanier() {
+    window.location.href = "panier.html";
+}
+
+    function voirCommandes() {
+
+        window.location.href =
+            "historique commande.html";
+
+    }
+
+
+
+    // ==============================
+    // DÉCONNEXION
+    // ==============================
+
+    function deconnexion() {
+
+        localStorage.removeItem("utilisateur");
+
+        location.reload();
+
+    }
+
+</script>
+
+</body>
+</html>

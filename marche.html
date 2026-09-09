@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Faire mon marché - MEN FÊ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            color: #222;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px 15px 100px;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .intro h1 {
+            color: #16843d;
+            margin-bottom: 8px;
+        }
+        .recherche {
+            margin-bottom: 20px;
+        }
+        .recherche input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-bottom: 25px;
+            padding-bottom: 5px;
+        }
+        .categorie {
+            border: none;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+        .categorie.active {
+            background: #16843d;
+            color: white;
+        }
+        .produits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .produit {
+            background: white;
+            padding: 18px;
+            border-radius: 14px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+        .produit-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .emoji {
+            font-size: 42px;
+        }
+        .nom {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .categorie-produit {
+            color: #16843d;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .prix {
+            color: #16843d;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .quantite-zone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .quantite-zone button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: #16843d;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .quantite-zone input {
+            width: 65px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .vide {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            color: #777;
+        }
+        .barre-bas {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            border-top: 1px solid #ddd;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
+        }
+        .bouton {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .principal {
+            background: #16843d;
+            color: white;
+        }
+        .secondaire {
+            background: #e9eeee;
+            color: #222;
+        }
+        .message {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #16843d;
+            color: white;
+            padding: 13px 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+        }
+        /* =====================================
+           VERSION MOBILE
+        ===================================== */
+        @media (max-width: 800px) {
+            .produits {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 550px) {
+            .produits {
+                grid-template-columns: 1fr;
+            }
+            .barre-bas {
+                flex-direction: column;
+            }
+            .barre-bas .bouton {
+                width: 100%;
+            }
+            .container {
+                padding-top: 20px;
+            }
+            .intro h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <!-- =====================================
+             INTRODUCTION
+        ===================================== -->
+        <section class="intro">
+            <h1>
+                🛒 Fais ton marché
+            </h1>
+            <p>
+                Choisis les produits et les quantités dont tu as besoin.
+            </p>
+        </section>
+        <!-- =====================================
+             RECHERCHE
+        ===================================== -->
+        <div class="recherche">
+            <input
+                type="text"
+                id="recherche"
+                placeholder="🔎 Rechercher un produit..."
+            >
+        </div>
+        <!-- =====================================
+             CATÉGORIES
+        ===================================== -->
+        <div
+            class="categories"
+            id="categories"
+        ></div>
+        <!-- =====================================
+             PRODUITS
+        ===================================== -->
+        <div
+            class="produits"
+            id="listeProduits"
+        ></div>
+    </main>
+    <!-- =====================================
+         MESSAGE
+    ===================================== -->
+    <div
+        class="message"
+        id="message"
+    ></div>
+    <!-- =====================================
+         BARRE DU BAS
+    ===================================== -->
+    <div class="barre-bas">
+        <button
+            type="button"
+            class="bouton secondaire"
+            id="reset"
+        >
+            🗑️ Réinitialiser
+        </button>
+        <button
+            type="button"
+            class="bouton principal"
+            id="ajouter"
+        >
+            🛒 Ajouter mon marché
+        </button>
+    </div>
+    <script>
+        /* =====================================
+           RÉCUPÉRER LES PRODUITS
+        ===================================== */
+        let produits =
+            JSON.parse(
+                localStorage.getItem("produits")
+            ) || [];
+        let categorieActuelle = "Tous";
+        /* =====================================
+           CATÉGORIES
+        ===================================== */
+        function afficherCategories() {
+            const zone =
+                document.getElementById("categories");
+            zone.innerHTML = "";
+            const boutonTous =
+                document.createElement("button");
+            boutonTous.type = "button";
+            boutonTous.className =
+                "categorie active";
+            boutonTous.textContent =
+                "🛒 Tous";
+            boutonTous.addEventListener(
+                "click",
+                function() {
+                    categorieActuelle =
+                        "Tous";
+                    actualiserBoutonsCategories();
+                    afficherProduits();
+                }
+            );
+            zone.appendChild(
+                boutonTous
+            );
+            const categories = [];
+            produits.forEach(
+                function(produit) {
+                    if (
+                        produit.categorie &&
+                        !categories.includes(
+                            produit.categorie
+                        )
+                    ) {
+                        categories.push(
+                            produit.categorie
+                        );
+                    }
+                }
+            );
+            categories.forEach(
+                function(categorie) {
+                    const bouton =
+                        document.createElement("button");
+                    bouton.type = "button";
+                    bouton.className =
+                        "categorie";
+                    bouton.textContent =
+                        "🏷️ " + categorie;
+                    bouton.dataset.categorie =
+                        categorie;
+                    bouton.addEventListener(
+                        "click",
+                        function() {
+                            categorieActuelle =
+                                categorie;
+                            actualiserBoutonsCategories();
+                            afficherProduits();
+                        }
+                    );
+                    zone.appendChild(
+                        bouton
+                    );
+                }
+            );
+        }
+        /* =====================================
+           CATÉGORIE ACTIVE
+        ===================================== */
+        function actualiserBoutonsCategories() {
+            const boutons =
+                document.querySelectorAll(
+                    ".categorie"
+                );
+            boutons.forEach(
+                function(bouton) {
+                    bouton.classList.remove(
+                        "active"
+                    );
+                    if (
+                        bouton.textContent ===
+                        "🛒 Tous" &&
+                        categorieActuelle ===
+                        "Tous"
+                    ) {
+                        bouton.classList.add(
+                            "active"
+                        );
+                    }
+                    if (
+                        bouton.dataset.categorie ===
+                        categorieActuelle
+                    ) {
+                        bouton.classList.add(
+                            "active"
+                        );
+                    }
+                }
+            );
+        }
+        /* =====================================
+           AFFICHER LES PRODUITS
+        ===================================== */
+        function afficherProduits() {
+            const zone =
+                document.getElementById(
+                    "listeProduits"
+                );
+            const recherche =
+                document
+                    .getElementById("recherche")
+                    .value
+                    .toLowerCase()
+                    .trim();
+            zone.innerHTML = "";
+            const filtres =
+                produits.filter(
+                    function(produit) {
+                        const categorieOK =
+                            categorieActuelle ===
+                            "Tous" ||
+                            produit.categorie ===
+                            categorieActuelle;
+                        const rechercheOK =
+                            String(
+                                produit.nom
+                            )
+                            .toLowerCase()
+                            .includes(
+                                recherche
+                            );
+                        return (
+                            categorieOK &&
+                            rechercheOK
+                        );
+                    }
+                );
+            if (
+                filtres.length === 0
+            ) {
+                zone.innerHTML =
+                    '<div class="vide">😕 Aucun produit trouvé.</div>';
+                return;
+            }
+            filtres.forEach(
+                function(produit) {
+                    const carte =
+                        document.createElement(
+                            "div"
+                        );
+                    carte.className =
+                        "produit";
+                    const top =
+                        document.createElement(
+                            "div"
+                        );
+                    top.className =
+                        "produit-top";
+                    const emoji =
+                        document.createElement(
+                            "div"
+                        );
+                    emoji.className =
+                        "emoji";
+                    emoji.textContent =
+                        produit.emoji ||
+                        "🛒";
+                    const informations =
+                        document.createElement(
+                            "div"
+                        );
+                    const nom =
+                        document.createElement(
+                            "div"
+                        );
+                    nom.className =
+                        "nom";
+                    nom.textContent =
+                        produit.nom;
+                    const categorie =
+                        document.createElement(
+                            "div"
+                        );
+                    categorie.className =
+                        "categorie-produit";
+                    categorie.textContent =
+                        produit.categorie;
+                    informations.appendChild(
+                        nom
+                    );
+                    informations.appendChild(
+                        categorie
+                    );
+                    top.appendChild(
+                        emoji
+                    );
+                    top.appendChild(
+                        informations
+                    );
+                    const prix =
+                        document.createElement(
+                            "div"
+                        );
+                    prix.className =
+                        "prix";
+                    prix.textContent =
+                        Number(
+                            produit.prix || 0
+                        ).toLocaleString(
+                            "fr-FR"
+                        ) + " FCFA";
+                    const zoneQuantite =
+                        document.createElement(
+                            "div"
+                        );
+                    zoneQuantite.className =
+                        "quantite-zone";
+                    const moins =
+                        document.createElement(
+                            "button"
+                        );
+                    moins.type = "button";
+                    moins.textContent =
+                        "−";
+                    const champ =
+                        document.createElement(
+                            "input"
+                        );
+                    champ.type =
+                        "number";
+                    champ.min =
+                        "0";
+                    champ.value =
+                        "0";
+                    champ.id =
+                        "quantite-" +
+                        produit.id;
+                    const plus =
+                        document.createElement(
+                            "button"
+                        );
+                    plus.type = "button";
+                    plus.textContent =
+                        "+";
+                    moins.addEventListener(
+                        "click",
+                        function() {
+                            let quantite =
+                                parseInt(
+                                    champ.value
+                                ) || 0;
+                            if (
+                                quantite > 0
+                            ) {
+                                quantite--;
+                            }
+                            champ.value =
+                                quantite;
+                        }
+                    );
+                    plus.addEventListener(
+                        "click",
+                        function() {
+                            let quantite =
+                                parseInt(
+                                    champ.value
+                                ) || 0;
+                            quantite++;
+                            champ.value =
+                                quantite;
+                        }
+                    );
+                    zoneQuantite.appendChild(
+                        moins
+                    );
+                    zoneQuantite.appendChild(
+                        champ
+                    );
+                    zoneQuantite.appendChild(
+                        plus
+                    );
+                    carte.appendChild(
+                        top
+                    );
+                    carte.appendChild(
+                        prix
+                    );
+                    carte.appendChild(
+                        zoneQuantite
+                    );
+                    zone.appendChild(
+                        carte
+                    );
+                }
+            );
+        }
+        /* =====================================
+           RECHERCHE
+        ===================================== */
+        document
+            .getElementById("recherche")
+            .addEventListener(
+                "input",
+                afficherProduits
+            );
+        /* =====================================
+           AJOUTER MON MARCHÉ
+        ===================================== */
+        document
+            .getElementById("ajouter")
+            .addEventListener(
+                "click",
+                function() {
+                    let panier =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "panier"
+                            )
+                        ) || [];
+                    let nombreTotal = 0;
+                    produits.forEach(
+                        function(produit) {
+                            const champ =
+                                document.getElementById(
+                                    "quantite-" +
+                                    produit.id
+                                );
+                            if (!champ) {
+                                return;
+                            }
+                            const quantite =
+                                parseInt(
+                                    champ.value
+                                ) || 0;
+                            if (
+                                quantite > 0
+                            ) {
+                                nombreTotal +=
+                                    quantite;
+                                const produitExistant =
+                                    panier.find(
+                                        function(item) {
+                                            return (
+                                                String(
+                                                    item.id
+                                                ) ===
+                                                String(
+                                                    produit.id
+                                                )
+                                            );
+                                        }
+                                    );
+                                if (
+                                    produitExistant
+                                ) {
+                                    produitExistant.quantite =
+                                        (
+                                            Number(
+                                                produitExistant.quantite
+                                            ) || 0
+                                        ) + quantite;
+                                }
+                                else {
+                                    panier.push({
+                                        id:
+                                            produit.id,
+                                        nom:
+                                            produit.nom,
+                                        prix:
+                                            Number(
+                                                produit.prix
+                                            ) || 0,
+                                        image:
+                                            produit.image ||
+                                            "",
+                                        quantite:
+                                            quantite
+                                    });
+                                }
+                            }
+                        }
+                    );
+                    if (
+                        nombreTotal === 0
+                    ) {
+                        afficherMessage(
+                            "⚠️ Choisis au moins un produit."
+                        );
+                        return;
+                    }
+                    localStorage.setItem(
+                        "panier",
+                        JSON.stringify(
+                            panier
+                        )
+                    );
+                    afficherMessage(
+                        "✅ Ton marché a été ajouté au panier !"
+                    );
+                    setTimeout(
+                        function() {
+                            window.location.href =
+                                "panier.html";
+                        },
+                        1000
+                    );
+                }
+            );
+        /* =====================================
+           RÉINITIALISER
+        ===================================== */
+        document
+            .getElementById("reset")
+            .addEventListener(
+                "click",
+                function() {
+                    document
+                        .querySelectorAll(
+                            ".quantite-zone input"
+                        )
+                        .forEach(
+                            function(champ) {
+                                champ.value =
+                                    0;
+                            }
+                        );
+                }
+            );
+        /* =====================================
+           MESSAGE
+        ===================================== */
+        function afficherMessage(
+            texte
+        ) {
+            const message =
+                document.getElementById(
+                    "message"
+                );
+            message.textContent =
+                texte;
+            message.style.display =
+                "block";
+            setTimeout(
+                function() {
+                    message.style.display =
+                        "none";
+                },
+                2000
+            );
+        }
+        /* =====================================
+           DÉMARRAGE
+        ===================================== */
+        afficherCategories();
+        afficherProduits();
+    </script>
+</body>
+</html>

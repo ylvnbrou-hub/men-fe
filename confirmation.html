@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Commande confirmée - MEN FÊ</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            color: #222;
+        }
+
+        header {
+            background: #16843d;
+            color: white;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 15px 60px;
+        }
+
+        .confirmation {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+            text-align: center;
+        }
+
+        .icone {
+            width: 80px;
+            height: 80px;
+
+            margin: 0 auto 20px;
+
+            background: #e8f7ed;
+            color: #16843d;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 42px;
+        }
+
+        h1 {
+            color: #16843d;
+            margin-bottom: 10px;
+        }
+
+        .sous-titre {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .numero {
+            background: #f0f7f2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .numero span {
+            display: block;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .numero strong {
+            color: #16843d;
+            font-size: 19px;
+        }
+
+        .section {
+            text-align: left;
+            border-top: 1px solid #ddd;
+            padding-top: 22px;
+            margin-top: 22px;
+        }
+
+        .section h2 {
+            color: #16843d;
+            margin-bottom: 15px;
+            font-size: 19px;
+        }
+
+        .produit {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .produit-info {
+            flex: 1;
+        }
+
+        .produit-nom {
+            font-weight: bold;
+        }
+
+        .produit-detail {
+            color: #777;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .prix {
+            font-weight: bold;
+            color: #16843d;
+        }
+
+        .ligne {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 10px 0;
+        }
+
+        .total {
+            border-top: 1px solid #ddd;
+
+            margin-top: 8px;
+            padding-top: 16px;
+
+            font-size: 21px;
+            font-weight: bold;
+
+            color: #16843d;
+        }
+
+        .livraison {
+            background: #fff8e6;
+            border-left: 4px solid #f0a500;
+
+            padding: 15px;
+            border-radius: 7px;
+
+            line-height: 1.6;
+        }
+
+        .statut {
+            display: inline-block;
+
+            background: #fff4d6;
+            color: #9a6900;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+        .boutons {
+            display: flex;
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .bouton {
+            flex: 1;
+
+            padding: 14px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            text-align: center;
+        }
+
+        .principal {
+            background: #16843d;
+            color: white;
+        }
+
+        .secondaire {
+            background: #e9eeee;
+            color: #222;
+        }
+
+        .erreur {
+            background: white;
+            border-radius: 15px;
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .erreur h1 {
+            color: #d93636;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .confirmation {
+                padding: 25px 18px;
+            }
+
+            .boutons {
+                flex-direction: column;
+            }
+
+            .produit {
+                flex-wrap: wrap;
+            }
+
+            .prix {
+                width: 100%;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🛒 MEN FÊ
+    </div>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="produits.html">Produits</a>
+        <a href="marche.html">Faire mon marché</a>
+        <a href="panier.html">🛒 Panier</a>
+        <a href="historique commande.html">📋 Mes commandes</a>
+        <a href="compte.html">👤 Compte</a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <div id="conteneur"></div>
+
+</main>
+
+
+<script>
+
+    /* =====================================
+       RÉCUPÉRER LA COMMANDE
+    ===================================== */
+
+    const commande =
+    JSON.parse(
+        localStorage.getItem("commande")
+    );
+
+const utilisateur =
+    JSON.parse(
+        localStorage.getItem("utilisateur")
+    );
+
+
+// Récupérer automatiquement les informations du compte
+if (utilisateur && commande) {
+
+    commande.nom = utilisateur.nom;
+    commande.telephone = utilisateur.telephone;
+
+}
+// Enregistrer la commande dans l'historique
+if (commande && utilisateur) {
+
+    commande.clientId = utilisateur.telephone;
+
+    let commandes =
+        JSON.parse(
+            localStorage.getItem("commandes")
+        ) || [];
+
+    // Éviter d'enregistrer deux fois la même commande
+    const existeDeja =
+        commandes.some(function(c) {
+            return c.numero === commande.numero;
+        });
+
+    if (!existeDeja) {
+
+        commandes.push(commande);
+
+        localStorage.setItem(
+            "commandes",
+            JSON.stringify(commandes)
+        );
+
+    }
+}
+    const conteneur =
+        document.getElementById(
+            "conteneur"
+        );
+
+
+    /* =====================================
+       VÉRIFIER LA COMMANDE
+    ===================================== */
+
+    if (!commande) {
+
+        conteneur.innerHTML = `
+
+            <div class="erreur">
+
+                <h1>
+                    ❌ Aucune commande trouvée
+                </h1>
+
+                <p>
+                    Nous n'avons pas trouvé de commande récente.
+                </p>
+
+                <div class="boutons">
+
+                    <a
+                        href="produits.html"
+                        class="bouton principal"
+                    >
+                        🥬 Faire mon marché
+                    </a>
+
+                    <a
+                        href="index.html"
+                        class="bouton secondaire"
+                    >
+                        🏠 Accueil
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+    } else {
+
+
+        /* =====================================
+           CALCULS
+        ===================================== */
+
+        const sousTotal =
+            Number(
+                commande.sousTotal
+            ) || 0;
+
+
+        const fraisLivraison =
+            Number(
+                commande.fraisLivraison
+            ) || 0;
+
+
+        const total =
+            Number(
+                commande.total
+            ) ||
+            sousTotal + fraisLivraison;
+
+
+        /* =====================================
+           DATE
+        ===================================== */
+
+        let dateCommande = "";
+
+        if (commande.date) {
+
+            dateCommande =
+                new Date(
+                    commande.date
+                ).toLocaleString(
+                    "fr-FR",
+                    {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }
+                );
+
+        }
+
+
+        /* =====================================
+           PRODUITS
+        ===================================== */
+
+        let produitsHTML = "";
+
+
+        if (
+            commande.panier &&
+            commande.panier.length > 0
+        ) {
+
+            commande.panier.forEach(
+                function(produit) {
+
+                    const prix =
+                        Number(
+                            produit.prix
+                        ) || 0;
+
+                    const quantite =
+                        Number(
+                            produit.quantite
+                        ) || 1;
+
+                    const montant =
+                        prix * quantite;
+
+
+                    produitsHTML += `
+
+                        <div class="produit">
+
+                            <div class="produit-info">
+
+                                <div class="produit-nom">
+                                    🥬 ${produit.nom}
+                                </div>
+
+                                <div class="produit-detail">
+                                    ${prix.toLocaleString("fr-FR")}
+                                    FCFA × ${quantite}
+                                </div>
+
+                            </div>
+
+                            <div class="prix">
+                                ${montant.toLocaleString("fr-FR")}
+                                FCFA
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        }
+
+
+        /* =====================================
+           AFFICHAGE
+        ===================================== */
+
+        conteneur.innerHTML = `
+
+            <div class="confirmation">
+
+                <div class="icone">
+                    ✓
+                </div>
+
+
+                <h1>
+                    Commande confirmée !
+                </h1>
+
+                <p class="sous-titre">
+                    Merci pour ta confiance envers MEN FÊ ❤️
+                </p>
+
+
+                <div class="numero">
+
+                    <span>
+                        Numéro de commande
+                    </span>
+
+                    <strong>
+                        ${commande.numero}
+                    </strong>
+
+                    ${
+                        dateCommande
+                        ? `
+                            <br>
+                            <small>
+                                ${dateCommande}
+                            </small>
+                        `
+                        : ""
+                    }
+
+                </div>
+
+
+                <!-- STATUT -->
+
+                <div>
+
+                    <span class="statut">
+                        📦 ${commande.statut || "En attente"}
+                    </span>
+
+                </div>
+
+
+                <!-- PRODUITS -->
+
+                <div class="section">
+
+                    <h2>
+                        🥬 Ton marché
+                    </h2>
+
+                    ${produitsHTML}
+
+                </div>
+
+
+                <!-- TOTAL -->
+
+                <div class="section">
+
+                    <h2>
+                        🧾 Résumé
+                    </h2>
+
+                    <div class="ligne">
+
+                        <span>
+                            Sous-total
+                        </span>
+
+                        <strong>
+                            ${sousTotal.toLocaleString("fr-FR")}
+                            FCFA
+                        </strong>
+
+                    </div>
+
+
+                    <div class="ligne">
+
+                        <span>
+                            Livraison
+                        </span>
+
+                        <strong>
+                            ${
+                                fraisLivraison === 0
+                                ? "GRATUITE"
+                                : fraisLivraison.toLocaleString("fr-FR")
+                                + " FCFA"
+                            }
+                        </strong>
+
+                    </div>
+
+
+                    <div class="ligne total">
+
+                        <span>
+                            Total payé
+                        </span>
+
+                        <span>
+                            ${total.toLocaleString("fr-FR")}
+                            FCFA
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVRAISON -->
+
+                <div class="section">
+
+                    <h2>
+                        🚚 Livraison
+                    </h2>
+
+                    <div class="livraison">
+
+                        <strong>
+                            ${commande.nom}
+                        </strong>
+
+                        <br>
+
+                        📞 ${commande.telephone}
+
+                        <br>
+
+                        📍 ${commande.quartier}
+
+                        <br>
+
+                        ${commande.adresse}
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAIEMENT -->
+
+                <div class="section">
+
+                    <h2>
+                        💳 Paiement
+                    </h2>
+
+                    <p>
+                        Mode de paiement :
+                        <strong>
+                            ${commande.paiement}
+                        </strong>
+                    </p>
+
+                </div>
+
+
+                <!-- BOUTONS -->
+
+                <div class="boutons">
+
+                    <a
+                        href="historique commande.html"
+                        class="bouton principal"
+                    >
+                        📋 Voir mes commandes
+                    </a>
+
+                    <a
+                        href="produits.html"
+                        class="bouton secondaire"
+                    >
+                        🥬 Faire un nouveau marché
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Produits - MEN FÊ</title>
+
+<style>
+
+/* =====================================
+   STYLE GÉNÉRAL
+===================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7f5;
+    color: #222;
+}
+
+
+/* =====================================
+   CONTENEUR
+===================================== */
+
+.conteneur {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #16843d;
+    margin-bottom: 25px;
+}
+
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+#recherche {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================
+   CATÉGORIES
+===================================== */
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.categorie {
+    border: none;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.categorie:hover {
+    background: #e7f5eb;
+}
+
+.categorie.active {
+    background: #16843d;
+    color: white;
+}
+
+
+/* =====================================
+   PRODUITS
+===================================== */
+
+.produits {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.produit {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.produit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================
+   IMAGE PRODUIT
+===================================== */
+
+.image-produit {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.image-produit img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.emoji {
+    font-size: 55px;
+}
+
+
+/* =====================================
+   INFORMATIONS PRODUIT
+===================================== */
+
+.produit h3 {
+    color: #16843d;
+    margin-bottom: 8px;
+}
+
+.categorie-produit {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.prix {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+
+/* =====================================
+   BOUTON PANIER
+===================================== */
+
+.btn-panier {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #16843d;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-panier:hover {
+    background: #116b31;
+}
+
+
+/* =====================================
+   AUCUN PRODUIT
+===================================== */
+
+.vide {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+}
+
+
+/* =====================================
+   PANIER FLOTTANT
+===================================== */
+
+.panier-flottant {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #16843d;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* =====================================
+   BADGE DU PANIER
+===================================== */
+
+#badgePanier {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 12px;
+    min-width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   VERSION MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+    .conteneur {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    h1 {
+        font-size: 25px;
+        margin-bottom: 18px;
+    }
+
+    #recherche {
+        padding: 13px;
+        font-size: 15px;
+    }
+
+    .categories {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 3px 2px 10px;
+        margin-bottom: 18px;
+        scrollbar-width: none;
+    }
+
+    .categories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .categorie {
+        flex: 0 0 auto;
+        padding: 9px 14px;
+        font-size: 13px;
+    }
+
+    .produits {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .produit {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .image-produit {
+        height: 135px;
+        margin-bottom: 10px;
+    }
+
+    .image-produit img {
+        height: 135px;
+    }
+
+    .produit h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .categorie-produit {
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
+
+    .prix {
+        font-size: 15px;
+        margin-bottom: 9px;
+    }
+
+    .btn-panier {
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+
+    .panier-flottant {
+        right: 12px;
+        bottom: 15px;
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     PRODUITS
+===================================== -->
+
+<main class="conteneur">
+
+    <h1>
+        Nos produits 🌱
+    </h1>
+
+
+    <!-- RECHERCHE -->
+
+    <input
+        type="text"
+        id="recherche"
+        placeholder="🔎 Rechercher un produit..."
+    >
+
+
+    <!-- CATÉGORIES -->
+
+    <div class="categories">
+
+        <button
+            class="categorie active"
+            onclick="filtrerCategorie('Tous', this)"
+        >
+            🛒 Tous
+        </button>
+
+        <button
+            class="categorie"
+            onclick="filtrerCategorie('Tubercules', this)"
+        >
+            🍠 Tubercules
+        </button>
+
+        <button
+            class="categorie"
+            onclick="filtrerCategorie('Fruits', this)"
+        >
+            🍌 Fruits
+        </button>
+
+        <button
+            class="categorie"
+            onclick="filtrerCategorie('Légumes', this)"
+        >
+            🥬 Légumes
+        </button>
+
+        <button
+            class="categorie"
+            onclick="filtrerCategorie('Céréales', this)"
+        >
+            🌾 Céréales
+        </button>
+
+        <button
+            class="categorie"
+            onclick="filtrerCategorie('Condiments', this)"
+        >
+            🌶️ Condiments
+        </button>
+
+        <button
+            class="categorie"
+            onclick="filtrerCategorie('Feuilles', this)"
+        >
+            🍃 Feuilles
+        </button>
+
+    </div>
+
+
+    <!-- LISTE DES PRODUITS -->
+
+    <div
+        class="produits"
+        id="listeProduits"
+    ></div>
+
+</main>
+
+
+<!-- =====================================
+     PANIER FLOTTANT
+===================================== -->
+
+<a
+    href="panier.html"
+    class="panier-flottant"
+>
+
+    🛒 Voir mon panier
+
+    <span id="badgePanier">
+        0
+    </span>
+
+</a>
+
+
+<script>
+
+/* =====================================
+   PRODUITS PAR DÉFAUT
+===================================== */
+
+const produitsDefaut = [
+
+    {
+        id: 1,
+        nom: "Igname",
+        prix: 1500,
+        categorie: "Tubercules",
+        emoji: "🍠",
+        image: "images/igname.jpg"
+    },
+
+    {
+        id: 2,
+        nom: "Manioc",
+        prix: 1000,
+        categorie: "Tubercules",
+        emoji: "🥔",
+        image: "images/manioc.jpg"
+    },
+
+    {
+        id: 3,
+        nom: "Banane plantain",
+        prix: 1000,
+        categorie: "Fruits",
+        emoji: "🍌",
+        image: "images/banane-plantain.jpg"
+    },
+
+    {
+        id: 4,
+        nom: "Avocat",
+        prix: 500,
+        categorie: "Fruits",
+        emoji: "🥑",
+        image: "images/avocat.jpg"
+    },
+
+    {
+        id: 5,
+        nom: "Tomates",
+        prix: 800,
+        categorie: "Légumes",
+        emoji: "🍅",
+        image: "images/tomate.jpg"
+    },
+
+    {
+        id: 6,
+        nom: "Oignons",
+        prix: 700,
+        categorie: "Légumes",
+        emoji: "🧅",
+        image: "images/oignon.jpg"
+    },
+
+    {
+        id: 7,
+        nom: "Riz",
+        prix: 2000,
+        categorie: "Céréales",
+        emoji: "🍚",
+        image: "images/riz.jpg"
+    },
+
+    {
+        id: 8,
+        nom: "Maïs",
+        prix: 1200,
+        categorie: "Céréales",
+        emoji: "🌽",
+        image: "images/mais.jpg"
+    },
+
+    {
+        id: 9,
+        nom: "Piment",
+        prix: 500,
+        categorie: "Condiments",
+        emoji: "🌶️",
+        image: "images/piment.jpg"
+    },
+
+    {
+        id: 10,
+        nom: "Ail",
+        prix: 600,
+        categorie: "Condiments",
+        emoji: "🧄",
+        image: "images/ail.jpg"
+    },
+
+    {
+        id: 11,
+        nom: "Gingembre",
+        prix: 500,
+        categorie: "Condiments",
+        emoji: "🫚",
+        image: "images/gingembre.jpg"
+    },
+
+    {
+        id: 12,
+        nom: "Épinards",
+        prix: 500,
+        categorie: "Feuilles",
+        emoji: "🥬",
+        image: "images/epinards.jpg"
+    },
+
+    {
+        id: 13,
+        nom: "Feuilles de manioc",
+        prix: 700,
+        categorie: "Feuilles",
+        emoji: "🍃",
+        image: "images/feuilles-manioc.jpg"
+    },
+
+    {
+        id: 14,
+        nom: "Carotte",
+        prix: 1000,
+        categorie: "Légumes",
+        emoji: "🥕",
+        image: "images/carotte.jpg"
+    },
+
+    {
+        id: 15,
+        nom: "Concombre",
+        prix: 100,
+        categorie: "Légumes",
+        emoji: "🥒",
+        image: "images/concombre.jpg"
+    }
+
+];
+
+
+/* =====================================
+   RÉCUPÉRER LES PRODUITS
+===================================== */
+
+let produitsStockes =
+    JSON.parse(
+        localStorage.getItem("produits")
+    ) || [];
+
+
+/* =====================================
+   AJOUTER LES PRODUITS PAR DÉFAUT
+===================================== */
+
+produitsDefaut.forEach(
+    function(produitDefaut) {
+
+        const existe =
+            produitsStockes.some(
+                function(produit) {
+
+                    return (
+                        Number(produit.id) ===
+                        Number(produitDefaut.id)
+                    );
+
+                }
+            );
+
+        if (!existe) {
+
+            produitsStockes.push(
+                produitDefaut
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   IMAGES DES PRODUITS
+===================================== */
+
+const imagesParId = {
+
+    1: "images/igname.jpg",
+    2: "images/manioc.jpg",
+    3: "images/banane-plantain.jpg",
+    4: "images/avocat.jpg",
+    5: "images/tomate.jpg",
+    6: "images/oignon.jpg",
+    7: "images/riz.jpg",
+    8: "images/mais.jpg",
+    9: "images/piment.jpg",
+    10: "images/ail.jpg",
+    11: "images/gingembre.jpg",
+    12: "images/epinards.jpg",
+    13: "images/feuilles-manioc.jpg",
+    14: "images/carotte.jpg",
+    15: "images/concombre.jpg"
+
+};
+
+
+/* =====================================
+   AJOUTER LES IMAGES MANQUANTES
+===================================== */
+
+produitsStockes.forEach(
+    function(produit) {
+
+        if (
+            !produit.image &&
+            imagesParId[produit.id]
+        ) {
+
+            produit.image =
+                imagesParId[produit.id];
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   PRODUITS FINAUX
+===================================== */
+
+let produits =
+    produitsStockes;
+
+
+/* =====================================
+   SAUVEGARDER
+===================================== */
+
+localStorage.setItem(
+    "produits",
+    JSON.stringify(produits)
+);
+
+
+/* =====================================
+   CATÉGORIE ACTUELLE
+===================================== */
+
+let categorieActuelle = "Tous";
+
+
+/* =====================================
+   AFFICHER LES PRODUITS
+===================================== */
+
+function afficherProduits() {
+
+    const zone =
+        document.getElementById(
+            "listeProduits"
+        );
+
+    const recherche =
+        document
+            .getElementById("recherche")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const produitsFiltres =
+        produits.filter(
+            function(produit) {
+
+                const bonneCategorie =
+                    categorieActuelle === "Tous" ||
+                    produit.categorie ===
+                    categorieActuelle;
+
+
+                const bonneRecherche =
+                    produit.nom
+                        .toLowerCase()
+                        .includes(recherche)
+                    ||
+                    produit.categorie
+                        .toLowerCase()
+                        .includes(recherche);
+
+
+                return (
+                    bonneCategorie &&
+                    bonneRecherche
+                );
+
+            }
+        );
+
+
+    zone.innerHTML = "";
+
+
+    if (
+        produitsFiltres.length === 0
+    ) {
+
+        zone.innerHTML = `
+
+            <div class="vide">
+
+                😕 Aucun produit trouvé.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    produitsFiltres.forEach(
+        function(produit) {
+
+            let affichageImage;
+
+
+            if (produit.image) {
+
+                affichageImage = `
+
+                    <div class="image-produit">
+
+                        <img
+                            src="${produit.image}"
+                            alt="${produit.nom}"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'emoji\\'>${produit.emoji || "🛒"}</div>';"
+                        >
+
+                    </div>
+
+                `;
+
+            }
+
+            else {
+
+                affichageImage = `
+
+                    <div class="image-produit">
+
+                        <div class="emoji">
+
+                            ${produit.emoji || "🛒"}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            zone.innerHTML += `
+
+                <div class="produit">
+
+                    ${affichageImage}
+
+                    <div class="categorie-produit">
+
+                        ${produit.categorie}
+
+                    </div>
+
+                    <h3>
+
+                        ${produit.nom}
+
+                    </h3>
+
+                    <div class="prix">
+
+                        ${Number(
+                            produit.prix
+                        ).toLocaleString("fr-FR")}
+
+                        FCFA
+
+                    </div>
+
+                    <button
+                        class="btn-panier"
+                        onclick="ajouterAuPanier(${produit.id})"
+                    >
+
+                        🛒 Ajouter au panier
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   FILTRER PAR CATÉGORIE
+===================================== */
+
+function filtrerCategorie(
+    categorie,
+    bouton
+) {
+
+    categorieActuelle =
+        categorie;
+
+
+    document
+        .querySelectorAll(".categorie")
+        .forEach(
+            function(element) {
+
+                element.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    bouton.classList.add(
+        "active"
+    );
+
+
+    afficherProduits();
+
+}
+
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+document
+    .getElementById("recherche")
+    .addEventListener(
+        "input",
+        afficherProduits
+    );
+
+
+/* =====================================
+   BADGE DU PANIER
+===================================== */
+
+function mettreAJourBadgePanier() {
+
+    const panier =
+        JSON.parse(
+            localStorage.getItem("panier")
+        ) || [];
+
+
+    let total = 0;
+
+
+    panier.forEach(
+        function(produit) {
+
+            total +=
+                Number(
+                    produit.quantite
+                ) || 0;
+
+        }
+    );
+
+
+    const badge =
+        document.getElementById(
+            "badgePanier"
+        );
+
+
+    if (badge) {
+
+        badge.textContent =
+            total;
+
+    }
+
+}
+
+
+/* =====================================
+   AJOUTER AU PANIER
+===================================== */
+
+function ajouterAuPanier(id) {
+
+    let panier =
+        JSON.parse(
+            localStorage.getItem("panier")
+        ) || [];
+
+
+    const produit =
+        produits.find(
+            function(element) {
+
+                return (
+                    Number(element.id) ===
+                    Number(id)
+                );
+
+            }
+        );
+
+
+    if (!produit) {
+
+        return;
+
+    }
+
+
+    const produitExiste =
+        panier.find(
+            function(element) {
+
+                return (
+                    Number(element.id) ===
+                    Number(id)
+                );
+
+            }
+        );
+
+
+    if (produitExiste) {
+
+        produitExiste.quantite += 1;
+
+    }
+
+    else {
+
+        panier.push({
+
+            id: produit.id,
+
+            nom: produit.nom,
+
+            prix: produit.prix,
+
+            image: produit.image,
+
+            quantite: 1
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "panier",
+        JSON.stringify(panier)
+    );
+
+
+    mettreAJourBadgePanier();
+
+
+    alert(
+        produit.nom +
+        " a été ajouté au panier 🛒"
+    );
+
+}
+
+
+/* =====================================
+   AFFICHAGE INITIAL
+===================================== */
+
+afficherProduits();
+
+mettreAJourBadgePanier();
+
+
+/* =====================================
+   MISE À JOUR DU PANIER
+===================================== */
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+        if (
+            event.key === "panier"
+        ) {
+
+            mettreAJourBadgePanier();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>MEN FÊ - Ton marché, simplement</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f9f7;
+            color: #222;
+        }
+        /* =========================
+           GRAND EN-TÊTE
+        ========================= */
+        .top {
+            background: linear-gradient(
+                135deg,
+                #0f8f3d,
+                #16a34a,
+                #22c55e
+            );
+            color: white;
+            height: 230px;
+            text-align: center;
+            position: relative;
+        }
+        .reglage {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 28px;
+            left: 28px;
+            font-size: 30px;
+            z-index: 10;
+        }
+        .logo {
+            padding-top: 15px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .slogan {
+            font-size: 13px;
+            margin-top: 3px;
+            opacity: 0.95;
+        }
+        .bienvenue {
+            margin-top: 38px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .titre-principal {
+            font-size: 31px;
+            font-weight: bold;
+            margin-top: 7px;
+        }
+        .description {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        /* =========================
+           CARTE PRINCIPALE
+        ========================= */
+        .carte-principale {
+            width: calc(100% - 35px);
+            max-width: 650px;
+            margin: -85px auto 0;
+            position: relative;
+            z-index: 5;
+            background: white;
+            border-radius: 25px;
+            padding: 25px 20px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.12);
+        }
+        .carte-titre {
+            text-align: center;
+            color: #16843D;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .carte-texte {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+        .bouton-marche {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: #16843D;
+            color: white;
+            padding: 15px;
+            border-radius: 14px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        /* =========================
+           MENU ROND
+        ========================= */
+        .menu {
+            padding: 28px 15px 20px;
+            background: white;
+        }
+        .menu-grille {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            max-width: 700px;
+            margin: auto;
+        }
+        .menu-item {
+            text-decoration: none;
+            color: #222;
+            text-align: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .icone-rond {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dff8e7;
+            border-radius: 50%;
+            font-size: 28px;
+            border: 2px solid #b8efc9;
+        }
+        .menu-item span:last-child {
+            display: block;
+        }
+        /* =========================
+           PRODUITS
+        ========================= */
+        .section {
+            padding: 35px 15px;
+            max-width: 1100px;
+            margin: auto;
+        }
+        .titre-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .titre-section h2 {
+            color: #16843D;
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+        .titre-section p {
+            color: #777;
+            font-size: 14px;
+        }
+        .produits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .produit {
+            background: white;
+            border-radius: 18px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            overflow: hidden;
+        }
+        .produit-image {
+            width: 100%;
+            height: 180px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .produit-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .produit h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+        .prix {
+            display: inline-block;
+            background: #eaf7ef;
+            color: #16843D;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        /* =========================
+           COMMENT ÇA MARCHE
+        ========================= */
+        .fonctionnement {
+            background: #eaf7ef;
+            padding: 40px 15px;
+        }
+        .fonctionnement-interieur {
+            max-width: 1100px;
+            margin: auto;
+        }
+        .etapes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .etape {
+            background: white;
+            padding: 25px 18px;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .etape-icone {
+            width: 65px;
+            height: 65px;
+            margin: auto auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dff8e7;
+            border: 2px solid #22c55e;
+            border-radius: 50%;
+            font-size: 30px;
+        }
+        .etape h3 {
+            color: #16843D;
+            margin-bottom: 8px;
+        }
+        .etape p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        /* =========================
+           AVANTAGES
+        ========================= */
+        .avantages {
+            padding: 40px 15px;
+        }
+        .avantages-liste {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .avantage {
+            background: white;
+            text-align: center;
+            padding: 25px 18px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .avantage-icone {
+            width: 65px;
+            height: 65px;
+            margin: auto auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dff8e7;
+            border: 2px solid #22c55e;
+            border-radius: 50%;
+            font-size: 30px;
+        }
+        .avantage h3 {
+            color: #16843D;
+            margin-bottom: 8px;
+        }
+        .avantage p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        /* =========================
+           CTA
+        ========================= */
+        .cta {
+            background: #16843D;
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+        .cta h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+        .cta p {
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+        .cta a {
+            display: inline-block;
+            background: white;
+            color: #16843D;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            background: #10291b;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+        footer p {
+            font-size: 13px;
+        }
+        /* =========================
+           MENU RÉGLAGES
+        ========================= */
+        .menu-reglages {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .reglages-contenu {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 25px 25px 0 0;
+            padding: 25px 20px 30px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.2);
+            animation: monter 0.2s ease;
+        }
+        @keyframes monter {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        .reglages-contenu h2 {
+            text-align: center;
+            color: #16843D;
+            margin-bottom: 20px;
+        }
+        .option-reglage {
+            width: 100%;
+            padding: 17px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 14px;
+            background: #f3f8f4;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .option-reglage:hover {
+            background: #e0f5e7;
+        }
+        .bouton-fermer {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            background: #16843D;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* =========================
+           FENÊTRE INVITER DES AMIS
+        ========================= */
+        .fenetre-invitation {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .fenetre-invitation-contenu {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border-radius: 24px;
+            padding: 28px 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: apparition 0.2s ease;
+        }
+        .invitation-icone {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .invitation-titre {
+            color: #16843D;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .invitation-texte {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .bouton-partager {
+            width: 100%;
+            border: none;
+            background: #16843D;
+            color: white;
+            padding: 14px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .bouton-fermer-invitation {
+            width: 100%;
+            border: none;
+            background: #f1f1f1;
+            color: #333;
+            padding: 14px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        /* =========================
+           FENÊTRE APPAREILS
+        ========================= */
+        .fenetre-reglage {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .fenetre-reglage-contenu {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border-radius: 24px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            animation: apparition 0.2s ease;
+        }
+        @keyframes apparition {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .fenetre-titre {
+            text-align: center;
+            color: #16843D;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .appareil-carte {
+            background: #f3f8f4;
+            border-radius: 16px;
+            padding: 17px;
+            margin-bottom: 15px;
+        }
+        .appareil-nom {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .appareil-statut {
+            color: #16843D;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .appareil-activite {
+            color: #777;
+            font-size: 13px;
+        }
+        .bouton-deconnexion {
+            width: 100%;
+            border: none;
+            background: #ffe8e8;
+            color: #d62828;
+            padding: 14px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .bouton-fermer-fenetre {
+            width: 100%;
+            border: none;
+            background: #16843D;
+            color: white;
+            padding: 14px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        /* =========================
+           MOBILE
+        ========================= */
+        @media (max-width: 700px) {
+            .top {
+                height: 210px;
+            }
+            .reglage {
+                left: 18px;
+                top: 22px;
+                font-size: 26px;
+            }
+            .logo {
+                font-size: 27px;
+            }
+            .slogan {
+                font-size: 11px;
+            }
+            .bienvenue {
+                margin-top: 32px;
+                font-size: 16px;
+            }
+            .titre-principal {
+                font-size: 27px;
+            }
+            .description {
+                font-size: 13px;
+            }
+            .carte-principale {
+                width: calc(100% - 25px);
+                margin-top: -78px;
+                padding: 22px 17px;
+                border-radius: 22px;
+            }
+            .carte-titre {
+                font-size: 19px;
+            }
+            .menu {
+                padding-top: 25px;
+            }
+            .menu-grille {
+                gap: 5px;
+            }
+            .icone-rond {
+                width: 53px;
+                height: 53px;
+                font-size: 25px;
+            }
+            .menu-item {
+                font-size: 9px;
+            }
+            .section {
+                padding: 35px 12px;
+            }
+            .produits {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .produit {
+                padding: 8px;
+                border-radius: 14px;
+            }
+            .produit-image {
+                height: 135px;
+                border-radius: 10px;
+            }
+            .produit h3 {
+                font-size: 15px;
+            }
+            .prix {
+                font-size: 12px;
+                padding: 6px 9px;
+            }
+            .etapes {
+                grid-template-columns: 1fr;
+            }
+            .avantages-liste {
+                grid-template-columns: 1fr;
+            }
+            .cta {
+                padding: 45px 15px;
+            }
+            .cta h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- =========================
+     GRAND EN-TÊTE
+========================= -->
+<section class="top">
+    <button
+        class="reglage"
+        type="button"
+        onclick="ouvrirReglages()"
+    >
+        ⚙️
+    </button>
+    <div class="logo">
+        MEN FÊ
+    </div>
+    <div class="slogan">
+        Ton marché, simplement
+    </div>
+    <div class="bienvenue">
+        Bienvenue 👋🏽
+    </div>
+    <div class="titre-principal">
+        Ton marché, simplement
+    </div>
+    <div class="description">
+        Des produits frais, facilement accessibles.
+    </div>
+</section>
+<!-- =========================
+     CARTE PRINCIPALE
+========================= -->
+<div class="carte-principale">
+    <div class="carte-titre">
+        🥬 Fais ton marché facilement
+    </div>
+    <div class="carte-texte">
+        Découvre nos produits frais et
+        commande directement en ligne.
+    </div>
+    <a
+        href="produits.html"
+        class="bouton-marche"
+    >
+        🛒 Faire mon marché
+    </a>
+</div>
+<!-- =========================
+     MENU PRINCIPAL
+========================= -->
+<section class="menu">
+    <div class="menu-grille">
+        <a
+            href="produits.html"
+            class="menu-item"
+        >
+            <div class="icone-rond">
+                🥬
+            </div>
+            <span>
+                Produits
+            </span>
+        </a>
+        <a
+            href="marche.html"
+            class="menu-item"
+        >
+            <div class="icone-rond">
+                🛍️
+            </div>
+            <span>
+                Marché
+            </span>
+        </a>
+        <a
+            href="panier.html"
+            class="menu-item"
+        >
+            <div class="icone-rond">
+                🛒
+            </div>
+            <span>
+                Panier
+            </span>
+        </a>
+        <a
+            href="historique%20commande.html"
+            class="menu-item"
+        >
+            <div class="icone-rond">
+                📋
+            </div>
+            <span>
+                Commandes
+            </span>
+        </a>
+        <a
+            href="compte.html"
+            class="menu-item"
+        >
+            <div class="icone-rond">
+                👤
+            </div>
+            <span>
+                Compte
+            </span>
+        </a>
+    </div>
+</section>
+<!-- =========================
+     PRODUITS
+========================= -->
+<section class="section">
+    <div class="titre-section">
+        <h2>
+            🥬 Nos produits
+        </h2>
+        <p>
+            Des produits essentiels pour ton quotidien.
+        </p>
+    </div>
+    <div class="produits">
+        <div class="produit">
+            <div class="produit-image">
+                <img
+                    src="images/igname.jpg"
+                    alt="Igname"
+                >
+            </div>
+            <h3>
+                Igname
+            </h3>
+            <div class="prix">
+                1 500 FCFA
+            </div>
+        </div>
+        <div class="produit">
+            <div class="produit-image">
+                <img
+                    src="images/banane-plantain.jpg"
+                    alt="Banane plantain"
+                >
+            </div>
+            <h3>
+                Banane plantain
+            </h3>
+            <div class="prix">
+                1 000 FCFA
+            </div>
+        </div>
+        <div class="produit">
+            <div class="produit-image">
+                <img
+                    src="images/tomate.jpg"
+                    alt="Tomates"
+                >
+            </div>
+            <h3>
+                Tomates
+            </h3>
+            <div class="prix">
+                800 FCFA
+            </div>
+        </div>
+        <div class="produit">
+            <div class="produit-image">
+                <img
+                    src="images/oignon.jpg"
+                    alt="Oignons"
+                >
+            </div>
+            <h3>
+                Oignons
+            </h3>
+            <div class="prix">
+                700 FCFA
+            </div>
+        </div>
+        <div class="produit">
+            <div class="produit-image">
+                <img
+                    src="images/manioc.jpg"
+                    alt="Manioc"
+                >
+            </div>
+            <h3>
+                Manioc
+            </h3>
+            <div class="prix">
+                1 000 FCFA
+            </div>
+        </div>
+        <div class="produit">
+            <div class="produit-image">
+                <img
+                    src="images/avocat.jpg"
+                    alt="Avocat"
+                >
+            </div>
+            <h3>
+                Avocat
+            </h3>
+            <div class="prix">
+                500 FCFA
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================
+     COMMENT ÇA MARCHE
+========================= -->
+<section class="fonctionnement">
+    <div class="fonctionnement-interieur">
+        <div class="titre-section">
+            <h2>
+                🛍️ Comment ça marche ?
+            </h2>
+        </div>
+        <div class="etapes">
+            <div class="etape">
+                <div class="etape-icone">
+                    🥬
+                </div>
+                <h3>
+                    1. Choisis
+                </h3>
+                <p>
+                    Sélectionne les produits
+                    dont tu as besoin.
+                </p>
+            </div>
+            <div class="etape">
+                <div class="etape-icone">
+                    🛒
+                </div>
+                <h3>
+                    2. Commande
+                </h3>
+                <p>
+                    Vérifie ton panier et
+                    confirme ta commande.
+                </p>
+            </div>
+            <div class="etape">
+                <div class="etape-icone">
+                    🚚
+                </div>
+                <h3>
+                    3. Reçois
+                </h3>
+                <p>
+                    Nous préparons ton marché
+                    et te le livrons.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================
+     AVANTAGES
+========================= -->
+<section class="avantages">
+    <div class="titre-section">
+        <h2>
+            ❤️ Pourquoi MEN FÊ ?
+        </h2>
+    </div>
+    <div class="avantages-liste">
+        <div class="avantage">
+            <div class="avantage-icone">
+                ⚡
+            </div>
+            <h3>
+                Simple
+            </h3>
+            <p>
+                Fais ton marché rapidement
+                depuis ton téléphone.
+            </p>
+        </div>
+        <div class="avantage">
+            <div class="avantage-icone">
+                🏠
+            </div>
+            <h3>
+                À domicile
+            </h3>
+            <p>
+                Ton marché arrive directement
+                chez toi.
+            </p>
+        </div>
+        <div class="avantage">
+            <div class="avantage-icone">
+                🤝
+            </div>
+            <h3>
+                Local
+            </h3>
+            <p>
+                Valorisons les produits
+                vivriers et les vendeurs locaux.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- =========================
+     CTA
+========================= -->
+<section class="cta">
+    <h2>
+        Prêt à faire ton marché ?
+    </h2>
+    <p>
+        Quelques clics et ton marché est préparé.
+    </p>
+    <a href="produits.html">
+        🛒 Commencer maintenant
+    </a>
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+    <p>
+        ©️ 2026 MEN FÊ — Ton marché, simplement.
+    </p>
+</footer>
+<!-- =========================
+     MENU RÉGLAGES
+========================= -->
+<div
+    class="menu-reglages"
+    id="menuReglages"
+    onclick="fermerReglages(event)"
+>
+    <div
+        class="reglages-contenu"
+        onclick="event.stopPropagation()"
+    >
+        <h2>
+            ⚙️ Réglages
+        </h2>
+        <button
+            class="option-reglage"
+            type="button"
+            onclick="inviterAmis()"
+        >
+            👥 Inviter des amis
+        </button>
+        <button
+            class="option-reglage"
+            type="button"
+            onclick="contacterService()"
+        >
+            💬 Contacter le service client
+        </button>
+        <button
+            class="option-reglage"
+            type="button"
+            onclick="appareilsConnectes()"
+        >
+            📱 Appareils connectés
+        </button>
+        <button
+            class="bouton-fermer"
+            type="button"
+            onclick="fermerReglages()"
+        >
+            ✖️ Fermer
+        </button>
+    </div>
+</div>
+<!-- =========================
+     FENÊTRE INVITER DES AMIS
+========================= -->
+<div
+    class="fenetre-invitation"
+    id="fenetreInvitation"
+    onclick="fermerInvitation(event)"
+>
+    <div
+        class="fenetre-invitation-contenu"
+        onclick="event.stopPropagation()"
+    >
+        <div class="invitation-icone">
+            👥
+        </div>
+        <div class="invitation-titre">
+            Invite tes amis
+        </div>
+        <div class="invitation-texte">
+            🥬 Fais découvrir MEN FÊ à tes amis !<br>
+            Partage ton marché simplement avec eux.
+        </div>
+        <button
+            class="bouton-partager"
+            type="button"
+            onclick="partagerMENFE()"
+        >
+            📤 Partager MEN FÊ
+        </button>
+        <button
+            class="bouton-fermer-invitation"
+            type="button"
+            onclick="fermerInvitation()"
+        >
+            Fermer
+        </button>
+    </div>
+</div>
+<!-- =========================
+     FENÊTRE APPAREILS
+========================= -->
+<div
+    class="fenetre-reglage"
+    id="fenetreAppareils"
+    onclick="fermerAppareils(event)"
+>
+    <div
+        class="fenetre-reglage-contenu"
+        onclick="event.stopPropagation()"
+    >
+        <div class="fenetre-titre">
+            📱 Appareils connectés
+        </div>
+        <div class="appareil-carte">
+            <div
+                class="appareil-nom"
+                id="nomAppareil"
+            >
+                📱 Appareil actuel
+            </div>
+            <div class="appareil-statut">
+                🟢 Connecté
+            </div>
+            <div
+                class="appareil-activite"
+                id="activiteAppareil"
+            >
+                Dernière activité : maintenant
+            </div>
+        </div>
+        <button
+            class="bouton-deconnexion"
+            type="button"
+            onclick="deconnecterAppareil()"
+        >
+            🚪 Déconnecter cet appareil
+        </button>
+        <button
+            class="bouton-fermer-fenetre"
+            type="button"
+            onclick="fermerAppareils()"
+        >
+            Fermer
+        </button>
+    </div>
+</div>
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script>
+    /* =========================
+       RÉGLAGES
+    ========================= */
+    function ouvrirReglages() {
+        document.getElementById("menuReglages").style.display = "flex";
+    }
+    function fermerReglages(event) {
+        if (
+            !event ||
+            event.target === document.getElementById("menuReglages")
+        ) {
+            document.getElementById("menuReglages").style.display = "none";
+        }
+    }
+    /* =========================
+       INVITER DES AMIS
+    ========================= */
+    function inviterAmis() {
+        document.getElementById("menuReglages").style.display = "none";
+        document.getElementById("fenetreInvitation").style.display = "flex";
+    }
+    function fermerInvitation(event) {
+        if (
+            !event ||
+            event.target === document.getElementById("fenetreInvitation")
+        ) {
+            document.getElementById("fenetreInvitation").style.display = "none";
+        }
+    }
+    function partagerMENFE() {
+        if (navigator.share) {
+            navigator.share({
+                title: "MEN FÊ",
+                text: "🥬 Découvre MEN FÊ, ton marché simplement !",
+                url: window.location.href
+            }).catch(function () {
+                /* L'utilisateur a simplement fermé le partage. */
+            });
+        } else {
+            alert(
+                "📤 Partage MEN FÊ avec tes amis !\n\n" +
+                window.location.href
+            );
+        }
+    }
+    /* =========================
+       SERVICE CLIENT
+    ========================= */
+    function contacterService() {
+        const message =
+            "Bonjour MEN FÊ 👋🏽\n\n" +
+            "Je souhaite contacter le service client.";
+        const lienWhatsApp =
+            "https://wa.me/225140605804?text=" +
+            encodeURIComponent(message);
+        window.location.href = lienWhatsApp;
+    }
+    /* =========================
+       APPAREILS CONNECTÉS
+    ========================= */
+    function appareilsConnectes() {
+        let appareil = "📱 Appareil actuel";
+        const plateforme =
+            navigator.platform.toLowerCase();
+        if (plateforme.includes("iphone")) {
+            appareil = "📱 iPhone";
+        } else if (plateforme.includes("ipad")) {
+            appareil = "📱 iPad";
+        } else if (plateforme.includes("win")) {
+            appareil = "💻 Ordinateur Windows";
+        } else if (plateforme.includes("mac")) {
+            appareil = "💻 Mac";
+        } else if (plateforme.includes("android")) {
+            appareil = "📱 Téléphone Android";
+        }
+        document.getElementById("nomAppareil").textContent =
+            appareil;
+        document.getElementById("activiteAppareil").textContent =
+            "Dernière activité : " +
+            new Date().toLocaleString("fr-FR");
+        document.getElementById("fenetreAppareils").style.display =
+            "flex";
+    }
+    function fermerAppareils(event) {
+        if (
+            !event ||
+            event.target === document.getElementById("fenetreAppareils")
+        ) {
+            document.getElementById("fenetreAppareils").style.display =
+                "none";
+        }
+    }
+    function deconnecterAppareil() {
+        const confirmation = confirm(
+            "🚪 Déconnecter cet appareil ?\n\n" +
+            "Tu vas être déconnecté de cet appareil."
+        );
+        if (confirmation) {
+            document.getElementById("fenetreAppareils").style.display =
+                "none";
+            alert(
+                "✅ Appareil déconnecté.\n\n" +
+                "La session de cet appareil a été fermée."
+            );
+        }
+    }
+</script>
+</body>
+</html>
