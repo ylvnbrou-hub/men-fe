@@ -97,29 +97,40 @@ h1 {
 
 /* =====================================
    PRODUITS
+   4 PRODUITS PAR LIGNE SUR PC
 ===================================== */
 
 .produits {
     display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+
+
+/* =====================================
+   CARTE PRODUIT
+===================================== */
 
 .produit {
     background: white;
     padding: 15px;
     border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.1);
+
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
+
     overflow: hidden;
 }
 
 .produit:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,0.15);
 }
 
 
@@ -130,20 +141,27 @@ h1 {
 .image-produit {
     width: 100%;
     height: 180px;
+
     border-radius: 12px;
     overflow: hidden;
+
     background: #f0f0f0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin-bottom: 15px;
 }
 
 .image-produit img {
     width: 100%;
     height: 180px;
+
     object-fit: cover;
+
     border-radius: 10px;
+
     display: block;
 }
 
@@ -176,13 +194,18 @@ h1 {
 
 .btn-panier {
     width: 100%;
+
     padding: 11px;
+
     border: none;
     border-radius: 8px;
+
     background: #16843d;
     color: white;
+
     font-size: 15px;
     font-weight: bold;
+
     cursor: pointer;
 }
 
@@ -197,9 +220,13 @@ h1 {
 
 .vide {
     grid-column: 1 / -1;
+
     text-align: center;
+
     padding: 40px;
+
     background: white;
+
     border-radius: 15px;
 }
 
@@ -210,42 +237,88 @@ h1 {
 
 .panier-flottant {
     position: fixed;
+
     right: 20px;
     bottom: 20px;
+
     background: #16843d;
     color: white;
+
     text-decoration: none;
+
     padding: 15px 20px;
+
     border-radius: 30px;
+
     font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.2);
+
     display: flex;
+
     align-items: center;
-    gap: 5px;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    z-index: 9999;
+
+    white-space: nowrap;
 }
 
 
 /* =====================================
-   BADGE DU PANIER
+   TEXTE DU PANIER
+===================================== */
+
+.texte-panier {
+    display: inline-block;
+}
+
+
+/* =====================================
+   BADGE PANIER
 ===================================== */
 
 #badgePanier {
     background: red;
     color: white;
+
     border-radius: 50%;
+
     padding: 3px 7px;
+
     font-size: 12px;
+
     min-width: 20px;
     height: 20px;
+
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
+
     font-weight: bold;
 }
 
 
 /* =====================================
-   VERSION MOBILE
+   TABLETTE
+===================================== */
+
+@media (max-width: 900px) {
+
+    .produits {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
 ===================================== */
 
 @media (max-width: 600px) {
@@ -266,11 +339,18 @@ h1 {
     }
 
     .categories {
+
         justify-content: flex-start;
+
         flex-wrap: nowrap;
+
         overflow-x: auto;
-        padding: 3px 2px 10px;
+
+        padding:
+            3px 2px 10px;
+
         margin-bottom: 18px;
+
         scrollbar-width: none;
     }
 
@@ -279,55 +359,117 @@ h1 {
     }
 
     .categorie {
+
         flex: 0 0 auto;
-        padding: 9px 14px;
+
+        padding:
+            9px 14px;
+
         font-size: 13px;
     }
 
+
+    /* 2 PRODUITS PAR LIGNE */
+
     .produits {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
         gap: 12px;
     }
 
     .produit {
+
         padding: 10px;
+
         border-radius: 12px;
     }
 
     .image-produit {
+
         height: 135px;
+
         margin-bottom: 10px;
     }
 
     .image-produit img {
+
         height: 135px;
     }
 
     .produit h3 {
+
         font-size: 15px;
+
         margin-bottom: 6px;
     }
 
     .categorie-produit {
+
         font-size: 11px;
+
         margin-bottom: 5px;
     }
 
     .prix {
+
         font-size: 15px;
+
         margin-bottom: 9px;
     }
 
     .btn-panier {
+
         padding: 10px 5px;
+
         font-size: 12px;
     }
 
+
+    /* PANIER MOBILE */
+
     .panier-flottant {
+
         right: 12px;
+
         bottom: 15px;
-        padding: 12px 15px;
+
+        padding:
+            12px 16px;
+
         font-size: 13px;
+
+        gap: 7px;
+    }
+
+}
+
+
+/* =====================================
+   TRÈS PETIT ÉCRAN
+===================================== */
+
+@media (max-width: 380px) {
+
+    .produits {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+    .panier-flottant {
+
+        right: 8px;
+
+        bottom: 10px;
+
+        padding:
+            10px 12px;
+
+        font-size: 12px;
     }
 
 }
@@ -346,82 +488,82 @@ h1 {
 
 <main class="conteneur">
 
-    <h1>
-        Nos produits
-    </h1>
+<h1>
+    Nos produits
+</h1>
 
 
-    <!-- RECHERCHE -->
+<!-- RECHERCHE -->
 
-    <input
-        type="text"
-        id="recherche"
-        placeholder="Rechercher un produit..."
+<input
+    type="text"
+    id="recherche"
+    placeholder="Rechercher un produit..."
+>
+
+
+<!-- CATÉGORIES -->
+
+<div class="categories">
+
+    <button
+        class="categorie active"
+        onclick="filtrerCategorie('Tous', this)"
     >
+        Tous
+    </button>
+
+    <button
+        class="categorie"
+        onclick="filtrerCategorie('Tubercules', this)"
+    >
+        Tubercules
+    </button>
+
+    <button
+        class="categorie"
+        onclick="filtrerCategorie('Fruits', this)"
+    >
+        Fruits
+    </button>
+
+    <button
+        class="categorie"
+        onclick="filtrerCategorie('Légumes', this)"
+    >
+        Légumes
+    </button>
+
+    <button
+        class="categorie"
+        onclick="filtrerCategorie('Céréales', this)"
+    >
+        Céréales
+    </button>
+
+    <button
+        class="categorie"
+        onclick="filtrerCategorie('Condiments', this)"
+    >
+        Condiments
+    </button>
+
+    <button
+        class="categorie"
+        onclick="filtrerCategorie('Feuilles', this)"
+    >
+        Feuilles
+    </button>
+
+</div>
 
 
-    <!-- CATÉGORIES -->
+<!-- LISTE DES PRODUITS -->
 
-    <div class="categories">
-
-        <button
-            class="categorie active"
-            onclick="filtrerCategorie('Tous', this)"
-        >
-            Tous
-        </button>
-
-        <button
-            class="categorie"
-            onclick="filtrerCategorie('Tubercules', this)"
-        >
-            Tubercules
-        </button>
-
-        <button
-            class="categorie"
-            onclick="filtrerCategorie('Fruits', this)"
-        >
-            Fruits
-        </button>
-
-        <button
-            class="categorie"
-            onclick="filtrerCategorie('Légumes', this)"
-        >
-            Légumes
-        </button>
-
-        <button
-            class="categorie"
-            onclick="filtrerCategorie('Céréales', this)"
-        >
-            Céréales
-        </button>
-
-        <button
-            class="categorie"
-            onclick="filtrerCategorie('Condiments', this)"
-        >
-            Condiments
-        </button>
-
-        <button
-            class="categorie"
-            onclick="filtrerCategorie('Feuilles', this)"
-        >
-            Feuilles
-        </button>
-
-    </div>
-
-
-    <!-- LISTE DES PRODUITS -->
-
-    <div
-        class="produits"
-        id="listeProduits"
-    ></div>
+<div
+    class="produits"
+    id="listeProduits"
+></div>
 
 </main>
 
@@ -435,7 +577,9 @@ h1 {
     class="panier-flottant"
 >
 
-    Voir mon panier
+    <span class="texte-panier">
+        🛒 Voir mon panier
+    </span>
 
     <span id="badgePanier">
         0
@@ -446,8 +590,9 @@ h1 {
 
 <script>
 
+
 /* =====================================
-   PRODUITS PAR DÉFAUT
+   PRODUITS OFFICIELS MEN FÊ
 ===================================== */
 
 const produitsDefaut = [
@@ -472,7 +617,7 @@ const produitsDefaut = [
         id: 3,
         nom: "Banane plantain",
         prix: 1000,
-        categorie: "Fruits",
+        categorie: "Légumes",
         image: "images/banane-plantain.jpg"
     },
 
@@ -486,7 +631,7 @@ const produitsDefaut = [
 
     {
         id: 5,
-        nom: "Tomates",
+        nom: "Tomate",
         prix: 800,
         categorie: "Légumes",
         image: "images/tomate.jpg"
@@ -494,7 +639,7 @@ const produitsDefaut = [
 
     {
         id: 6,
-        nom: "Oignons",
+        nom: "Oignon",
         prix: 700,
         categorie: "Légumes",
         image: "images/oignon.jpg"
@@ -510,7 +655,7 @@ const produitsDefaut = [
 
     {
         id: 8,
-        nom: "Mais",
+        nom: "Maïs",
         prix: 1200,
         categorie: "Céréales",
         image: "images/mais.jpg"
@@ -570,93 +715,224 @@ const produitsDefaut = [
         prix: 100,
         categorie: "Légumes",
         image: "images/concombre.jpg"
+    },
+
+    {
+        id: 16,
+        nom: "Patate",
+        prix: 1000,
+        categorie: "Tubercules",
+        image: "images/patate.jpg"
+    },
+
+    {
+        id: 17,
+        nom: "Orange",
+        prix: 500,
+        categorie: "Fruits",
+        image: "images/orange.jpg"
     }
 
 ];
 
 
 /* =====================================
+   NETTOYER UN TEXTE
+===================================== */
+
+function nettoyerTexte(texte) {
+
+    return String(texte || "")
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+}
+
+
+/* =====================================
    RÉCUPÉRER LES PRODUITS
 ===================================== */
 
-let produitsStockes =
-    JSON.parse(
-        localStorage.getItem("produitsMENFE")
-    ) || [];
+let produitsStockes = [];
+
+try {
+
+    produitsStockes =
+        JSON.parse(
+            localStorage.getItem("produitsMENFE")
+        ) || [];
+
+    if (!Array.isArray(produitsStockes)) {
+
+        produitsStockes = [];
+
+    }
+
+}
+catch (erreur) {
+
+    produitsStockes = [];
+
+}
 
 
 /* =====================================
-   AJOUTER LES PRODUITS PAR DÉFAUT
+   AJOUTER / CORRIGER LES PRODUITS
 ===================================== */
 
-produitsDefaut.forEach(
-    function(produitDefaut) {
+produitsDefaut.forEach(function(produitDefaut) {
 
-        const existe =
-            produitsStockes.some(
-                function(produit) {
+    const index =
+        produitsStockes.findIndex(function(produit) {
 
-                    return (
-                        Number(produit.id) ===
-                        Number(produitDefaut.id)
-                    );
-
-                }
+            return (
+                Number(produit.id) ===
+                Number(produitDefaut.id)
             );
 
-        if (!existe) {
+        });
 
-            produitsStockes.push(
-                produitDefaut
-            );
+
+    if (index === -1) {
+
+        produitsStockes.push(
+            { ...produitDefaut }
+        );
+
+    }
+
+    else {
+
+        produitsStockes[index] = {
+            ...produitsStockes[index],
+            id: produitDefaut.id,
+            nom: produitDefaut.nom,
+            prix: produitDefaut.prix,
+            categorie: produitDefaut.categorie,
+            image: produitDefaut.image
+        };
+
+    }
+
+});
+
+
+/* =====================================
+   SUPPRIMER LES DOUBLONS
+===================================== */
+
+const idsDejaVus = new Set();
+
+produitsStockes =
+    produitsStockes.filter(function(produit) {
+
+        const id =
+            Number(produit.id);
+
+
+        if (!id) {
+
+            return true;
 
         }
 
-    }
-);
+
+        if (idsDejaVus.has(id)) {
+
+            return false;
+
+        }
+
+
+        idsDejaVus.add(id);
+
+        return true;
+
+    });
 
 
 /* =====================================
-   IMAGES DES PRODUITS
+   CORRECTION DES IMAGES PAR NOM
 ===================================== */
 
-const imagesParId = {
+const imagesParNom = {
 
-    1: "images/igname.jpg",
-    2: "images/manioc.jpg",
-    3: "images/banane-plantain.jpg",
-    4: "images/avocat.jpg",
-    5: "images/tomate.jpg",
-    6: "images/oignon.jpg",
-    7: "images/riz.jpg",
-    8: "images/mais.jpg",
-    9: "images/piment.jpg",
-    10: "images/ail.jpg",
-    11: "images/gingembre.jpg",
-    12: "images/epinards.jpg",
-    13: "images/feuilles-manioc.jpg",
-    14: "images/carotte.jpg",
-    15: "images/concombre.jpg"
+    "igname":
+        "images/igname.jpg",
+
+    "manioc":
+        "images/manioc.jpg",
+
+    "banane plantain":
+        "images/banane-plantain.jpg",
+
+    "avocat":
+        "images/avocat.jpg",
+
+    "tomate":
+        "images/tomate.jpg",
+
+    "tomates":
+        "images/tomate.jpg",
+
+    "oignon":
+        "images/oignon.jpg",
+
+    "oignons":
+        "images/oignon.jpg",
+
+    "riz":
+        "images/riz.jpg",
+
+    "mais":
+        "images/mais.jpg",
+
+    "piment":
+        "images/piment.jpg",
+
+    "ail":
+        "images/ail.jpg",
+
+    "gingembre":
+        "images/gingembre.jpg",
+
+    "epinards":
+        "images/epinards.jpg",
+
+    "feuilles de manioc":
+        "images/feuilles-manioc.jpg",
+
+    "carotte":
+        "images/carotte.jpg",
+
+    "concombre":
+        "images/concombre.jpg",
+
+    "patate":
+        "images/patate.jpg",
+
+    "orange":
+        "images/orange.jpg"
 
 };
 
 
-/* =====================================
-   AJOUTER LES IMAGES MANQUANTES
-===================================== */
+produitsStockes.forEach(function(produit) {
 
-produitsStockes.forEach(
-    function(produit) {
+    const nom =
+        nettoyerTexte(produit.nom);
 
-        if (imagesParId[produit.id]) {
 
-            produit.image =
-                imagesParId[produit.id];
+    if (imagesParNom[nom]) {
 
-        }
+        produit.image =
+            imagesParNom[nom];
 
     }
-);
+
+});
 
 
 /* =====================================
@@ -681,7 +957,8 @@ localStorage.setItem(
    CATÉGORIE ACTUELLE
 ===================================== */
 
-let categorieActuelle = "Tous";
+let categorieActuelle =
+    "Tous";
 
 
 /* =====================================
@@ -695,45 +972,63 @@ function afficherProduits() {
             "listeProduits"
         );
 
+
     const recherche =
         document
             .getElementById("recherche")
-            .value
-            .toLowerCase()
-            .trim();
+            .value;
+
+
+    const rechercheNettoyee =
+        nettoyerTexte(recherche);
 
 
     const produitsFiltres =
-        produits.filter(
-            function(produit) {
+        produits.filter(function(produit) {
 
-                const bonneCategorie =
-                    categorieActuelle === "Tous" ||
-                    produit.categorie ===
-                    categorieActuelle;
+            const bonneCategorie =
 
-
-                const bonneRecherche =
-                    produit.nom
-                        .toLowerCase()
-                        .includes(recherche)
-                    ||
+                categorieActuelle === "Tous"
+                ||
+                nettoyerTexte(
                     produit.categorie
-                        .toLowerCase()
-                        .includes(recherche);
-
-
-                return (
-                    bonneCategorie &&
-                    bonneRecherche
+                ) ===
+                nettoyerTexte(
+                    categorieActuelle
                 );
 
-            }
-        );
+
+            const bonneRecherche =
+
+                rechercheNettoyee === ""
+                ||
+                nettoyerTexte(
+                    produit.nom
+                ).includes(
+                    rechercheNettoyee
+                )
+                ||
+                nettoyerTexte(
+                    produit.categorie
+                ).includes(
+                    rechercheNettoyee
+                );
+
+
+            return (
+                bonneCategorie &&
+                bonneRecherche
+            );
+
+        });
 
 
     zone.innerHTML = "";
 
+
+    /* =================================
+       AUCUN PRODUIT
+    ================================= */
 
     if (
         produitsFiltres.length === 0
@@ -750,92 +1045,82 @@ function afficherProduits() {
         `;
 
         return;
+
     }
 
 
-    produitsFiltres.forEach(
-        function(produit) {
+    /* =================================
+       AFFICHER CHAQUE PRODUIT
+    ================================= */
 
-            let affichageImage;
+    produitsFiltres.forEach(function(produit) {
 
-
-            if (produit.image) {
-
-                affichageImage = `
-
-                    <div class="image-produit">
-
-                        <img
-                            src="${produit.image}"
-                            alt="${produit.nom}"
-                        >
-
-                    </div>
-
-                `;
-
-            }
-
-            else {
-
-                affichageImage = `
-
-                    <div class="image-produit">
-
-                        <span>
-                            Produit
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
+        const image =
+            produit.image ||
+            "images/produit.jpg";
 
 
-            zone.innerHTML += `
+        zone.innerHTML += `
 
-                <div class="produit">
+            <div class="produit">
 
-                    ${affichageImage}
+                <div class="image-produit">
 
-                    <div class="categorie-produit">
-
-                        ${produit.categorie}
-
-                    </div>
-
-                    <h3>
-
-                        ${produit.nom}
-
-                    </h3>
-
-                    <div class="prix">
-
-                        ${Number(
-                            produit.prix
-                        ).toLocaleString("fr-FR")}
-
-                        FCFA
-
-                    </div>
-
-                    <button
-                        class="btn-panier"
-                        onclick="ajouterAuPanier(${produit.id})"
+                    <img
+                        src="${image}"
+                        alt="${produit.nom}"
+                        onerror="
+                            this.style.display='none';
+                            this.parentElement.innerHTML='<span>Image non disponible</span>';
+                        "
                     >
-
-                        Ajouter au panier
-
-                    </button>
 
                 </div>
 
-            `;
 
-        }
-    );
+                <div class="categorie-produit">
+
+                    ${produit.categorie}
+
+                </div>
+
+
+                <h3>
+
+                    ${produit.nom}
+
+                </h3>
+
+
+                <div class="prix">
+
+                    ${Number(
+                        produit.prix
+                    ).toLocaleString("fr-FR")}
+
+                    FCFA
+
+                </div>
+
+
+                <button
+                    class="btn-panier"
+                    onclick="
+                        ajouterAuPanier(
+                            ${produit.id}
+                        )
+                    "
+                >
+
+                    Ajouter au panier
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
 
 }
 
@@ -854,16 +1139,16 @@ function filtrerCategorie(
 
 
     document
-        .querySelectorAll(".categorie")
-        .forEach(
-            function(element) {
+        .querySelectorAll(
+            ".categorie"
+        )
+        .forEach(function(element) {
 
-                element.classList.remove(
-                    "active"
-                );
+            element.classList.remove(
+                "active"
+            );
 
-            }
-        );
+        });
 
 
     bouton.classList.add(
@@ -889,30 +1174,48 @@ document
 
 
 /* =====================================
-   BADGE DU PANIER
+   BADGE PANIER
 ===================================== */
 
 function mettreAJourBadgePanier() {
 
-    const panier =
-        JSON.parse(
-            localStorage.getItem("panier")
-        ) || [];
+    let panier = [];
+
+
+    try {
+
+        panier =
+            JSON.parse(
+                localStorage.getItem(
+                    "panier"
+                )
+            ) || [];
+
+        if (!Array.isArray(panier)) {
+
+            panier = [];
+
+        }
+
+    }
+    catch (erreur) {
+
+        panier = [];
+
+    }
 
 
     let total = 0;
 
 
-    panier.forEach(
-        function(produit) {
+    panier.forEach(function(produit) {
 
-            total +=
-                Number(
-                    produit.quantite
-                ) || 0;
+        total +=
+            Number(
+                produit.quantite
+            ) || 0;
 
-        }
-    );
+    });
 
 
     const badge =
@@ -937,26 +1240,48 @@ function mettreAJourBadgePanier() {
 
 function ajouterAuPanier(id) {
 
-    let panier =
-        JSON.parse(
-            localStorage.getItem("panier")
-        ) || [];
+    let panier = [];
+
+
+    try {
+
+        panier =
+            JSON.parse(
+                localStorage.getItem(
+                    "panier"
+                )
+            ) || [];
+
+        if (!Array.isArray(panier)) {
+
+            panier = [];
+
+        }
+
+    }
+    catch (erreur) {
+
+        panier = [];
+
+    }
 
 
     const produit =
-        produits.find(
-            function(element) {
+        produits.find(function(element) {
 
-                return (
-                    Number(element.id) ===
-                    Number(id)
-                );
+            return (
+                Number(element.id) ===
+                Number(id)
+            );
 
-            }
-        );
+        });
 
 
     if (!produit) {
+
+        alert(
+            "Produit introuvable."
+        );
 
         return;
 
@@ -964,21 +1289,24 @@ function ajouterAuPanier(id) {
 
 
     const produitExiste =
-        panier.find(
-            function(element) {
+        panier.find(function(element) {
 
-                return (
-                    Number(element.id) ===
-                    Number(id)
-                );
+            return (
+                Number(element.id) ===
+                Number(id)
+            );
 
-            }
-        );
+        });
 
 
     if (produitExiste) {
 
-        produitExiste.quantite += 1;
+        produitExiste.quantite =
+            (
+                Number(
+                    produitExiste.quantite
+                ) || 0
+            ) + 1;
 
     }
 
@@ -986,15 +1314,20 @@ function ajouterAuPanier(id) {
 
         panier.push({
 
-            id: produit.id,
+            id:
+                produit.id,
 
-            nom: produit.nom,
+            nom:
+                produit.nom,
 
-            prix: produit.prix,
+            prix:
+                produit.prix,
 
-            image: produit.image,
+            image:
+                produit.image,
 
-            quantite: 1
+            quantite:
+                1
 
         });
 
@@ -1012,7 +1345,7 @@ function ajouterAuPanier(id) {
 
     alert(
         produit.nom +
-        " a été ajouté au panier"
+        " a été ajouté au panier."
     );
 
 }
