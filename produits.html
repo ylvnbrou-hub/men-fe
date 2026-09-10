@@ -581,7 +581,7 @@ const produitsDefaut = [
 
 let produitsStockes =
     JSON.parse(
-        localStorage.getItem("produits")
+        localStorage.getItem("produitsMENFE")
     ) || [];
 
 
@@ -648,10 +648,7 @@ const imagesParId = {
 produitsStockes.forEach(
     function(produit) {
 
-        if (
-            !produit.image &&
-            imagesParId[produit.id]
-        ) {
+        if (imagesParId[produit.id]) {
 
             produit.image =
                 imagesParId[produit.id];
@@ -675,7 +672,7 @@ let produits =
 ===================================== */
 
 localStorage.setItem(
-    "produits",
+    "produitsMENFE",
     JSON.stringify(produits)
 );
 
